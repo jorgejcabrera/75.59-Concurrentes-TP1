@@ -6,17 +6,21 @@
 #define INC_75_59_CONCURRENTES_TP1_IMAGE_H
 
 #include <iostream>
+#include <map>
+#include <list>
+#include "Pixel.h"
 
 using namespace std;
 
 class Image {
 private:
-    int height;
-    int width;
+    map<int, list<Pixel>> pixels;
 public:
-    Image(int height, int width);
+    Image(map<int, list<Pixel>> pixels);
 
-    std::pair<int, int> pixel();
+    map<int, list<Pixel>>* getPixels();
+
+    string toString();
 
     virtual ~Image();
 };

@@ -4,15 +4,26 @@
 
 #include "Image.h"
 
-Image::Image(int height, int width) {
-    this->height = height;
-    this->width = width;
+#include <utility>
+#include<sstream>
+
+Image::Image(map<int, list<Pixel>> pixels) {
+    this->pixels = std::move(pixels);
 }
 
-std::pair<int, int> Image::pixel() {
-    return std::pair<int, int>(this->height, this->width);
+map<int, list<Pixel>> *Image::getPixels() {
+    return &this->pixels;
 }
 
-Image::~Image() {
-
+string Image::toString() {
+    stringstream ss;
+    for (auto it = this->pixels.begin(); it != this->pixels.end(); it++) {
+        for (auto itList = it->second.begin(); itList != it->second.end(); itList++) {
+            ss << "[" << itList->getBlue() << " " << itList->getRed() << " " << itList->getGreen() << "] ";
+        }
+        ss << "\n";
+    }
+    return ss.str();
 }
+
+Image::~Image() = default;
