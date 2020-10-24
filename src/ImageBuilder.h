@@ -4,19 +4,18 @@
 
 #ifndef INC_75_59_CONCURRENTES_TP1_IMAGEBUILDER_H
 #define INC_75_59_CONCURRENTES_TP1_IMAGEBUILDER_H
+
 #include "Image.h"
+#include "Resolution.h"
 
 class ImageBuilder {
 
 private:
-    int height{};
-    int width{};
+    Resolution resolution;
 public:
     ImageBuilder();
 
-    ImageBuilder withHeight(int height);
-
-    ImageBuilder withWidth(int width);
+    ImageBuilder withResolution(Resolution resolution);
 
     Image build() const;
 

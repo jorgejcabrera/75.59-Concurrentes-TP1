@@ -1,15 +1,18 @@
 #include <iostream>
-#include "ImageBuilder.h"
+#include "ObservatoryBuilder.h"
 #include "ImageQualityFix.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    Image image = ImageBuilder()
-            .withWidth(2)
-            .withHeight(2)
+
+    Observatory observatory = ObservatoryBuilder()
+            .withImageResolution(Resolution(2, 2))
+            .withCamerasQuantity(1)
             .build();
 
-    ImageQualityFix().adjust(&image);
+    list<Image> images = observatory.takeImagesCapture();
 
+    ImageQualityFix().adjust(images.begin().operator->());
+    
     return 0;
 }
