@@ -6,10 +6,10 @@
 
 ofstream getLogger();
 
-void processImagesInParallel(int camerasQuantity, list<Image> &images);
+void processImagesInParallel(list<Image> &images);
 
 int main() {
-    int camerasQuantity = 2;
+    int camerasQuantity = 5;
     Observatory observatory = ObservatoryBuilder()
             .withImageResolution(Resolution(2, 2))
             .withCamerasQuantity(camerasQuantity)
@@ -17,15 +17,16 @@ int main() {
 
     list<Image> images = observatory.takeImagesCapture();
     ofstream log = getLogger();
-    processImagesInParallel(camerasQuantity, images);
+    processImagesInParallel(images);
 
     log.close();
     return 0;
 }
 
-void processImagesInParallel(int camerasQuantity, list<Image> &images) {
-    pid_t pids[camerasQuantity];
-    for (int i = 0; i < camerasQuantity; ++i) {
+void processImagesInParallel(list<Image> &images) {
+    int imageQuantity = images.size();
+    pid_t pids[imageQuantity];
+    for (int i = 0; i < imageQuantity; ++i) {
         if ((pids[i] = fork()) < 0) {
             perror("fork");
             abort();
