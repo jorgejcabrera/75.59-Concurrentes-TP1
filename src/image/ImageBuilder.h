@@ -6,7 +6,7 @@
 #define INC_75_59_CONCURRENTES_TP1_IMAGEBUILDER_H
 
 #include "Image.h"
-#include "Resolution.h"
+#include "../observatory/camera/Resolution.h"
 
 class ImageBuilder {
 

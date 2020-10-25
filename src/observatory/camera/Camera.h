@@ -5,7 +5,7 @@
 #ifndef INC_75_59_CONCURRENTES_TP1_CAMERA_H
 #define INC_75_59_CONCURRENTES_TP1_CAMERA_H
 
-#include "ImageBuilder.h"
+#include "../../image/ImageBuilder.h"
 #include "Resolution.h"
 
 class Camera {

@@ -1,12 +1,12 @@
 #include <iostream>
 #include <unistd.h>
-#include "ObservatoryBuilder.h"
-#include "ImageQualityFix.h"
+#include "observatory/ObservatoryBuilder.h"
+#include "image/algorithm/ImageQualityFix.h"
 #include <fstream>
 
 ofstream getLogger();
+void fixImagesQualityInParallel(list<Image> &images);
 
-void processImagesInParallel(list<Image> &images);
 
 int main() {
     int camerasQuantity = 5;
@@ -16,14 +16,13 @@ int main() {
             .build();
 
     list<Image> images = observatory.takeImagesCapture();
-    ofstream log = getLogger();
-    processImagesInParallel(images);
+    fixImagesQualityInParallel(images);
 
-    log.close();
     return 0;
 }
 
-void processImagesInParallel(list<Image> &images) {
+void fixImagesQualityInParallel(list<Image> &images) {
+    ofstream log = getLogger();
     int imageQuantity = images.size();
     pid_t pids[imageQuantity];
     for (int i = 0; i < imageQuantity; ++i) {
@@ -38,8 +37,8 @@ void processImagesInParallel(list<Image> &images) {
             exit(0);
         }
     }
+    log.close();
 }
-
 
 ofstream getLogger() {
     ofstream log;

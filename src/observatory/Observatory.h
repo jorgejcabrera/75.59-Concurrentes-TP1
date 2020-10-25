@@ -5,7 +5,7 @@
 #ifndef INC_75_59_CONCURRENTES_TP1_OBSERVATORY_H
 #define INC_75_59_CONCURRENTES_TP1_OBSERVATORY_H
 
-#include "Camera.h"
+#include "camera/Camera.h"
 
 class Observatory {
 private:

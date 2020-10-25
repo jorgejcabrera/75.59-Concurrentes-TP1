@@ -5,7 +5,7 @@
 #ifndef INC_75_59_CONCURRENTES_TP1_IMAGEQUALITYFIX_H
 #define INC_75_59_CONCURRENTES_TP1_IMAGEQUALITYFIX_H
 
-#include "Image.h"
+#include "../Image.h"
 
 class ImageQualityFix {
 public:
