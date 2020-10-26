@@ -16,11 +16,19 @@ class Image {
 private:
     map<int, list<Pixel>> pixels;
 public:
+    Image();
+
     Image(map<int, list<Pixel>> pixels);
 
-    map<int, list<Pixel>>* getPixels();
+    map<int, list<Pixel>> *getPixels();
+
+    Image overlap(Image image);
 
     string toString();
+
+    char *serialize();
+
+    static Image *deserialize(char *bytes);
 
     virtual ~Image();
 };

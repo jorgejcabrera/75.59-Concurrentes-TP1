@@ -23,7 +23,25 @@ string Image::toString() {
         }
         ss << "\n";
     }
+    ss << "\n";
     return ss.str();
 }
+
+Image Image::overlap(Image image) {
+    if (rand() % 2 == 0) {
+        return image;
+    }
+    return *this;
+}
+
+char *Image::serialize() {
+    return reinterpret_cast<char *>(this);
+}
+
+Image *Image::deserialize(char *bytes) {
+    return reinterpret_cast<Image *>(bytes);
+}
+
+Image::Image() = default;
 
 Image::~Image() = default;

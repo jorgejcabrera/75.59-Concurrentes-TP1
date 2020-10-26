@@ -4,28 +4,20 @@
 #include "image/algorithm/ImageQualityFix.h"
 #include <fstream>
 
-ofstream getLogger();
-void fixImagesQualityInParallel(list<Image> &images);
+void printImages(list<Image> list);
 
-
-int main() {
-    int camerasQuantity = 5;
-    Observatory observatory = ObservatoryBuilder()
-            .withImageResolution(Resolution(2, 2))
-            .withCamerasQuantity(camerasQuantity)
-            .build();
-
-    list<Image> images = observatory.takeImagesCapture();
-    fixImagesQualityInParallel(images);
-
-    return 0;
+ofstream getLogger() {
+    ofstream log;
+    log.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt");
+    return log;
 }
 
-void fixImagesQualityInParallel(list<Image> &images) {
+void adjustImagesInParallel(list<Image> &images) {
     ofstream log = getLogger();
     int imageQuantity = images.size();
     pid_t pids[imageQuantity];
-    for (int i = 0; i < imageQuantity; ++i) {
+    int n = imageQuantity;
+    for (int i = 0; i < n; ++i) {
         if ((pids[i] = fork()) < 0) {
             perror("fork");
             abort();
@@ -37,14 +29,29 @@ void fixImagesQualityInParallel(list<Image> &images) {
             exit(0);
         }
     }
-    log.close();
 }
 
-ofstream getLogger() {
-    ofstream log;
-    log.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt");
-    return log;
+int main() {
+    int camerasQuantity = 2;
+    Observatory observatory = ObservatoryBuilder()
+            .withImageResolution(Resolution(2, 2))
+            .withCamerasQuantity(camerasQuantity)
+            .build();
+
+    list<Image> images = observatory.takeImagesCapture();
+    adjustImagesInParallel(images);
+    Image finalImage = ImageQualityFix().overlap(&images);
+    return 0;
 }
+
+void printImages(list<Image> list) {
+    for (auto &it : list) {
+        cout << it.toString();
+    }
+}
+
+
+
 
 
 /**

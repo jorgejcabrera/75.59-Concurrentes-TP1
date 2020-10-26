@@ -11,7 +11,9 @@ class ImageQualityFix {
 public:
     ImageQualityFix();
 
-    void adjust(Image *image);
+    static void adjust(Image *image);
+
+    static Image overlap(list<Image> *images);
 
     virtual ~ImageQualityFix();
 };

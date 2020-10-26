@@ -16,3 +16,13 @@ void ImageQualityFix::adjust(Image *image) {
         }
     }
 }
+
+Image ImageQualityFix::overlap(list<Image> *images) {
+    if (images->size() <= 1) {
+        return *images->begin();
+    }
+    Image overlappedImage;
+    for (auto it = images->begin(); it.operator++() != images->end(); it++) {
+        overlappedImage = overlappedImage.overlap(*it.operator->());
+    }
+}
