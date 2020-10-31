@@ -15,7 +15,8 @@ Image ImageBuilder::build() const {
         }
         pixels[i] = currentPixels;
     }
-    return Image(pixels);
+    int id = rand() % 1000000;
+    return Image(pixels, id);
 }
 
 ImageBuilder ImageBuilder::withResolution(Resolution resolution) {

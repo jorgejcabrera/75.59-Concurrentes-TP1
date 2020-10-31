@@ -14,17 +14,22 @@ using namespace std;
 
 class Image {
 private:
+    int id;
     map<int, list<Pixel>> pixels;
 public:
     Image();
 
-    Image(map<int, list<Pixel>> pixels);
+    Image(map<int, list<Pixel>> pixels, int id);
 
     map<int, list<Pixel>> *getPixels();
 
     void setPixels(map<int, list<Pixel>> pixels);
 
     Image overlap(Image image);
+
+    void setId(int id);
+
+    int getId();
 
     string toString();
 

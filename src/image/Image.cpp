@@ -7,8 +7,9 @@
 #include <sstream>
 #include <vector>
 
-Image::Image(map<int, list<Pixel>> pixels) {
+Image::Image(map<int, list<Pixel>> pixels, int id) {
     this->pixels = std::move(pixels);
+    this->id = id;
 }
 
 map<int, list<Pixel>> *Image::getPixels() {
@@ -17,7 +18,8 @@ map<int, list<Pixel>> *Image::getPixels() {
 
 string Image::toString() {
     stringstream ss;
-    ss << "width: " << this->getPixels()->begin()->second.size() << "; height: " << this->getPixels()->size() << endl;
+    ss << "id: " << this->id << "; width: " << this->getPixels()->begin()->second.size() << "; height: "
+       << this->getPixels()->size() << endl;
     for (auto &pixel : this->pixels) {
         for (auto &itList : pixel.second) {
             ss << "[" << itList.getRed() << " " << itList.getBlue() << " " << itList.getGreen() << "] ";
@@ -37,6 +39,14 @@ Image Image::overlap(Image image) {
 
 void Image::setPixels(map<int, list<Pixel>> pixels) {
     this->pixels = pixels;
+}
+
+void Image::setId(int id) {
+    this->id = id;
+}
+
+int Image::getId() {
+    return this->id;
 }
 
 Image::Image() = default;
