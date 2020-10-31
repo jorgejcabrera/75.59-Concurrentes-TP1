@@ -3,8 +3,9 @@
 #include "observatory/ObservatoryBuilder.h"
 #include "image/algorithm/ImageQualityFix.h"
 #include <fstream>
+#include <vector>
 #include "MemoriaCompartida.h"
-
+#include "image/factory/ImageSerializer.h"
 
 void printImages(list<Image> list) {
     for (auto &it : list) {
@@ -19,41 +20,68 @@ ofstream getLogger() {
 }
 
 void adjustImagesInParallel(list<Image> &images) {
-    ofstream log = getLogger();
     int imageQuantity = images.size();
-    pid_t pids[imageQuantity];
     int n = imageQuantity;
 
     for (int i = 0; i < n; ++i) {
-        if ((pids[i] = fork()) < 0) {
+        pid_t procId = fork();
+        if (procId < 0) {
             perror("fork");
             abort();
-        } else if (pids[i] == 0) {
-            cout << "I am a child. My pid is: " << getpid() << " my ppid is: " << getppid() << " \n";
-            string archivo("/bin/bash");
-            MemoriaCompartida<int> memoria(archivo, 'A');
-            int result = memoria.read();
-            std::cout << " Hijo : leo el numero " << result << " de la memoria compartida " << std::endl;
+        } else if (procId == 0) {
+            try {
+                cout << "I am a child. My pid is: " << getpid() << " my ppid is: " << getppid() << " \n";
+                string filePath("/bin/ls");
+                MemoriaCompartida<int> memory(filePath, 'A');
 
-            auto it = images.begin();
-            advance(it, i);
-            ImageQualityFix().adjust(it.operator->());
-            exit(0);
+                //char *result = memory.read();
+                //Image *anImagge = ImageBuilder().build().deserialize(result);
+                //cout << "Hijo : leo el numero " << anImagge->toString();
+
+                //ImageQualityFix().adjust(anImagge);
+                //cout << "Hijo : modifico la imagen a " << anImagge->toString();
+                memory.write(2);
+
+                exit(0);
+            } catch (std::string &errormessage) {
+                std::cerr << errormessage << std::endl;
+            }
         }
+    }
+
+    for (int i = 0; i < n; ++i) {
+        wait(NULL);
     }
 }
 
 int main() {
-    int camerasQuantity = 2;
+    int camerasQuantity = 1;
     Observatory observatory = ObservatoryBuilder()
-            .withImageResolution(Resolution(2, 2))
+            .withImageResolution(Resolution(3, 3))
             .withCamerasQuantity(camerasQuantity)
             .build();
 
     list<Image> images = observatory.takeImagesCapture();
+    Image anImage = images.begin().operator*();
+    cout << "Imagen inicial: " << anImage.toString() ;
 
-    adjustImagesInParallel(images);
-    Image finalImage = ImageQualityFix().overlap(&images);
+
+    int* bytes = ImageSerializer().toBytes(anImage);
+    Image newImage = ImageSerializer().fromBytes(bytes);
+    cout << "Imagen reconstruida: " << newImage.toString() ;
+
+    /** memoria compartida
+    * string filePath("/bin/ls");
+    * MemoriaCompartida<vector<char>> memory(filePath, 'A');
+    * */
+
+
+    /** Concurrencia
+    * adjustImagesInParallel(images);
+    * */
+
+    // TODO esto se hace al final para esto hay que usar señales
+    //Image finalImage = ImageQualityFix().overlap(&images);
 
     return 0;
 }

@@ -22,13 +22,11 @@ public:
 
     map<int, list<Pixel>> *getPixels();
 
+    void setPixels(map<int, list<Pixel>> pixels);
+
     Image overlap(Image image);
 
     string toString();
-
-    char *serialize();
-
-    static Image *deserialize(char *bytes);
 
     virtual ~Image();
 };

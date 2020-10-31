@@ -3,9 +3,9 @@
 //
 
 #include "Image.h"
-
 #include <utility>
-#include<sstream>
+#include <sstream>
+#include <vector>
 
 Image::Image(map<int, list<Pixel>> pixels) {
     this->pixels = std::move(pixels);
@@ -17,9 +17,10 @@ map<int, list<Pixel>> *Image::getPixels() {
 
 string Image::toString() {
     stringstream ss;
-    for (auto it = this->pixels.begin(); it != this->pixels.end(); it++) {
-        for (auto itList = it->second.begin(); itList != it->second.end(); itList++) {
-            ss << "[" << itList->getBlue() << " " << itList->getRed() << " " << itList->getGreen() << "] ";
+    ss << "width: " << this->getPixels()->begin()->second.size() << "; height: " << this->getPixels()->size() << endl;
+    for (auto &pixel : this->pixels) {
+        for (auto &itList : pixel.second) {
+            ss << "[" << itList.getRed() << " " << itList.getBlue() << " " << itList.getGreen() << "] ";
         }
         ss << "\n";
     }
@@ -34,12 +35,8 @@ Image Image::overlap(Image image) {
     return *this;
 }
 
-char *Image::serialize() {
-    return reinterpret_cast<char *>(this);
-}
-
-Image *Image::deserialize(char *bytes) {
-    return reinterpret_cast<Image *>(bytes);
+void Image::setPixels(map<int, list<Pixel>> pixels) {
+    this->pixels = pixels;
 }
 
 Image::Image() = default;

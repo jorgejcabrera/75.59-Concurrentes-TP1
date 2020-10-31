@@ -131,7 +131,7 @@ MemoriaCompartida<T>::MemoriaCompartida(const std::string &pathName, const char 
     key_t key = ftok(pathName.c_str(), word);
 
     if (key > 0) {
-        this->shmId = shmget(key, sizeof(T), 0644 | IPC_CREAT);
+        this->shmId = shmget(key, sizeof(T) * 1024, 0644 | IPC_CREAT);
 
         if (this->shmId > 0) {
             void *tmpPtr = shmat(this->shmId, NULL, 0);
