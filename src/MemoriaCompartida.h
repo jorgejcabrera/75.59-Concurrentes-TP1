@@ -23,7 +23,10 @@ private :
     int cantidadProcesosAdosados() const;
 
 public :
+
     MemoriaCompartida();
+
+    T *getPtrDatos();
 
     void create(const std::string &pathName, const char word);
 
@@ -37,7 +40,7 @@ public :
 
     MemoriaCompartida<T> &operator=(const MemoriaCompartida &origen);
 
-    void write(const T &data);
+    void write(const T &data, size_t offset);
 
     T read() const;
 };
@@ -131,7 +134,7 @@ MemoriaCompartida<T>::MemoriaCompartida(const std::string &pathName, const char 
     key_t key = ftok(pathName.c_str(), word);
 
     if (key > 0) {
-        this->shmId = shmget(key, sizeof(T) * 1024, 0644 | IPC_CREAT);
+        this->shmId = shmget(key, sizeof(T) * 5000, 0644 | IPC_CREAT);
 
         if (this->shmId > 0) {
             void *tmpPtr = shmat(this->shmId, NULL, 0);
@@ -193,8 +196,9 @@ MemoriaCompartida<T> &MemoriaCompartida<T>::operator=(const MemoriaCompartida &o
 }
 
 template<class T>
-void MemoriaCompartida<T>::write(const T &data) {
-    *(this->ptrDatos) = data;
+void MemoriaCompartida<T>::write(const T &data, size_t offset) {
+    //*(this->ptrDatos) = data;
+    memcpy(this->ptrDatos, data, offset);
 }
 
 template<class T>
@@ -207,6 +211,11 @@ int MemoriaCompartida<T>::cantidadProcesosAdosados() const {
     shmid_ds estado;
     shmctl(this->shmId, IPC_STAT, &estado);
     return estado.shm_nattch;
+}
+
+template<class T>
+T * MemoriaCompartida<T>::getPtrDatos() {
+    return this->ptrDatos;
 }
 
 

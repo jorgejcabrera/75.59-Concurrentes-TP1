@@ -31,6 +31,8 @@ public:
 
     int getId();
 
+    size_t getSerializedSize();
+
     string toString();
 
     virtual ~Image();

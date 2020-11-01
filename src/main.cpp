@@ -5,7 +5,8 @@
 #include <fstream>
 #include <vector>
 #include "MemoriaCompartida.h"
-#include "image/factory/ImageSerializer.h"
+#include "image/repository/ImageRepository.h"
+#include "memory/SharedMemory.h"
 
 void printImages(list<Image> list) {
     for (auto &it : list) {
@@ -31,16 +32,14 @@ void adjustImagesInParallel(list<Image> &images) {
         } else if (procId == 0) {
             try {
                 cout << "I am a child. My pid is: " << getpid() << " my ppid is: " << getppid() << " \n";
-                string filePath("/bin/ls");
-                MemoriaCompartida<int> memory(filePath, 'A');
+                // Memoria compartida
+                SharedMemory memory1 = SharedMemory();
+                Image image = ImageRepository().read(memory1.getPtrData());
 
-                //char *result = memory.read();
-                //Image *anImagge = ImageBuilder().build().deserialize(result);
-                //cout << "Hijo : leo el numero " << anImagge->toString();
+                cout << "Imagen reconstruida en proceso: " << image.toString() << endl;
 
-                //ImageQualityFix().adjust(anImagge);
-                //cout << "Hijo : modifico la imagen a " << anImagge->toString();
-                memory.write(2);
+                ImageQualityFix().adjust(&image);
+                ImageRepository().save(image, memory1.getPtrData());
 
                 exit(0);
             } catch (std::string &errormessage) {
@@ -55,30 +54,29 @@ void adjustImagesInParallel(list<Image> &images) {
 }
 
 int main() {
+    // Memoria compartida
+    SharedMemory memory = SharedMemory();
+    ImageRepository imageRepository = ImageRepository();
+
+    // Take some photos
     int camerasQuantity = 1;
     Observatory observatory = ObservatoryBuilder()
             .withImageResolution(Resolution(3, 3))
             .withCamerasQuantity(camerasQuantity)
             .build();
-
     list<Image> images = observatory.takeImagesCapture();
+
+    // Save an image
     Image anImage = images.begin().operator*();
-    cout << "Imagen inicial: " << anImage.toString() ;
+    cout << "An image is: " << anImage.toString() << endl;
+    imageRepository.save(anImage, memory.getPtrData());
 
+    // Concurrencia
+    // adjustImagesInParallel(images);
 
-    int* bytes = ImageSerializer().toBytes(anImage);
-    Image newImage = ImageSerializer().fromBytes(bytes);
-    cout << "Imagen reconstruida: " << newImage.toString() ;
-
-    /** memoria compartida
-    * string filePath("/bin/ls");
-    * MemoriaCompartida<vector<char>> memory(filePath, 'A');
-    * */
-
-
-    /** Concurrencia
-    * adjustImagesInParallel(images);
-    * */
+    // Valido
+    Image newImage = imageRepository.read(memory.getPtrData());
+    cout << "The final image is: " << newImage.toString() << endl;
 
     // TODO esto se hace al final para esto hay que usar señales
     //Image finalImage = ImageQualityFix().overlap(&images);
@@ -87,5 +85,5 @@ int main() {
 }
 
 /**
- * https://stackoverflow.com/questions/876605/multiple-child-process
+ * https://stackoverflow.com/questions/876605/multiple-child-memory
  * */

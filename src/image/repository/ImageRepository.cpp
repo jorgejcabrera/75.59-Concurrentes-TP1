@@ -2,10 +2,28 @@
 // Created by Jorge Cabrera on 31/10/2020.
 //
 
-#include "ImageSerializer.h"
+#include "ImageRepository.h"
 #include "../../observatory/camera/Resolution.h"
 
-Image ImageSerializer::fromBytes(const int *bytes) {
+void ImageRepository::save(Image image, int *ptr) {
+    ptr[0] = image.getId();
+    int width = image.getPixels()->begin()->second.size();
+    ptr[1] = width;
+    int height = image.getPixels()->size();
+    ptr[2] = height;
+    int i = 3;
+    for (auto &it : *image.getPixels()) {
+        for (auto itList = it.second.begin(); itList != it.second.end(); itList++) {
+            Pixel pixel = itList.operator*();
+            ptr[i] = pixel.getRed();
+            ptr[i + 1] = pixel.getBlue();
+            ptr[i + 2] = pixel.getGreen();
+            i = i + 3;
+        }
+    }
+}
+
+Image ImageRepository::read(const int *bytes) {
     int offset = 0;
     int id = bytes[offset];
     int width = bytes[offset + 1];
@@ -32,26 +50,6 @@ Image ImageSerializer::fromBytes(const int *bytes) {
     return image;
 }
 
-int *ImageSerializer::toBytes(Image image) {
-    int *bytes;
-    bytes[0] = image.getId();
-    int width = image.getPixels()->begin()->second.size();
-    bytes[1] = width;
-    int height = image.getPixels()->size();
-    bytes[2] = height;
-    int i = 3;
-    for (auto &it : *image.getPixels()) {
-        for (auto itList = it.second.begin(); itList != it.second.end(); itList++) {
-            Pixel pixel = itList.operator*();
-            bytes[i] = pixel.getRed();
-            bytes[i + 1] = pixel.getBlue();
-            bytes[i + 2] = pixel.getGreen();
-            i = i + 3;
-        }
-    }
-    return bytes;
-}
+ImageRepository::~ImageRepository() = default;
 
-ImageSerializer::~ImageSerializer() = default;
-
-ImageSerializer::ImageSerializer() = default;
+ImageRepository::ImageRepository() = default;
