@@ -17,7 +17,6 @@ private:
 
     void create(const std::string &pathName, char word, size_t capacity);
 
-    //int cantidadProcesosAdosados() const;
 
 public:
     SharedMemory();

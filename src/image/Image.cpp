@@ -19,12 +19,12 @@ map<int, list<Pixel>> *Image::getPixels() {
 string Image::toString() {
     stringstream ss;
     ss << "{ \n id: " << this->id << ",\n width: " << this->getPixels()->begin()->second.size() << ",\n height: "
-       << this->getPixels()->size() << ",\n" << " pixels: \n";
+       << this->getPixels()->size() << ",\n" << " pixels: {\n";
     for (auto &pixel : this->pixels) {
         for (auto &itList : pixel.second) {
             ss << " [" << itList.getRed() << " " << itList.getBlue() << " " << itList.getGreen() << "]";
         }
-        ss << "\n";
+        ss << "\n" << "}" << "\n";
     }
     ss << "}" << "\n";
     return ss.str();
