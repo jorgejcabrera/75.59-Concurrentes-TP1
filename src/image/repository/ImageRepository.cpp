@@ -50,6 +50,29 @@ Image ImageRepository::read(const int *bytes) {
     return image;
 }
 
+void ImageRepository::saveAll(list<Image> images, int *ptr) {
+    int *localPtr = ptr;
+    for (auto it = images.begin(); it != images.end(); it++) {
+        Image image = it.operator*();
+        this->save(image, localPtr);
+        localPtr = localPtr + image.getSerializedSize();
+    }
+}
+
+ImageRepository::ImageRepository(size_t sizeOfElement) {
+    this->sizeOfElement = sizeOfElement;
+}
+
+Image ImageRepository::findByPosition(int position, int *ptr) {
+    int *localPtr = ptr + this->sizeOfElement * position;
+    return this->read(localPtr);
+}
+
+void ImageRepository::saveAtPosition(const Image& image, int position, int *ptr) {
+    int *localPtr = ptr + this->sizeOfElement * position;
+    this->save(image, localPtr);
+}
+
 ImageRepository::~ImageRepository() = default;
 
 ImageRepository::ImageRepository() = default;

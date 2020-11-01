@@ -8,12 +8,23 @@
 #include "../Image.h"
 
 class ImageRepository {
-public:
-    ImageRepository();
+private:
+    size_t sizeOfElement;
 
     void save(Image image, int *ptr);
 
     static Image read(const int *ptr);
+
+public:
+    ImageRepository();
+
+    ImageRepository(size_t sizeOfElement);
+
+    void saveAll(list<Image> images, int *ptr);
+
+    void saveAtPosition(const Image &image, int position, int *ptr);
+
+    Image findByPosition(int position, int *ptr);
 
     virtual ~ImageRepository();
 };

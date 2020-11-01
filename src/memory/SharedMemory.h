@@ -15,12 +15,14 @@ private:
 
     int *ptrData{};
 
-    void create(const std::string &pathName, char word);
+    void create(const std::string &pathName, char word, size_t capacity);
 
     //int cantidadProcesosAdosados() const;
 
 public:
     SharedMemory();
+
+    SharedMemory(int elements);
 
     //void write(const int &data, size_t offset);
 

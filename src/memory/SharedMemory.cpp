@@ -9,7 +9,7 @@
 # include <cstring>
 # include <cerrno>
 
-void SharedMemory::create(const std::string &pathName, const char word) {
+void SharedMemory::create(const std::string &pathName, const char word, size_t capacity) {
     /**
      * La funcion ftok() me permitirá crea una key para identificar
      * el segmento de memoria compartida. Los parámetros serán:
@@ -29,7 +29,7 @@ void SharedMemory::create(const std::string &pathName, const char word) {
          *      - IPC_EXCL usando junto con IPC_CREAT, la operación falla si el segmento existe
          *  Esto me va a devolver un identificador valido del segmento
          */
-        this->shmId = shmget(key, sizeof(int *) * 1024, 0644 | IPC_CREAT);
+        this->shmId = shmget(key, capacity, 0644 | IPC_CREAT);
         if (this->shmId > 0) {
             /**
              * Mapeo del segmento de memoria al espacio de direcciones de proceso. Los parámetros serán:
@@ -57,13 +57,15 @@ void SharedMemory::create(const std::string &pathName, const char word) {
     }
 }
 
-SharedMemory::SharedMemory() {
+SharedMemory::SharedMemory(int elements) {
     std::string filePath("/bin/ls");
-    this->create(filePath, 'A');
+    this->create(filePath, 'A', sizeof(int *) * elements);
 }
 
 int *SharedMemory::getPtrData() {
     return this->ptrData;
 }
+
+SharedMemory::SharedMemory() = default;
 
 SharedMemory::~SharedMemory() = default;

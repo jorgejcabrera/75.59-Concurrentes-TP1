@@ -8,10 +8,13 @@
 #include "../Image.h"
 
 class ImageQualityFix {
+private:
+    static void adjust(Image *image);
+
 public:
     ImageQualityFix();
 
-    static void adjust(Image *image);
+    void adjustInParallel(list<Image> images);
 
     static Image overlap(list<Image> *images);
 
