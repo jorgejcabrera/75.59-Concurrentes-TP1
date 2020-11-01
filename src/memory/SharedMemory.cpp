@@ -66,6 +66,13 @@ int *SharedMemory::getPtrData() {
     return this->ptrData;
 }
 
+void SharedMemory::free() {
+    // detach del bloque de memoria
+    shmdt(static_cast<void *> (this->ptrData));
+    shmctl(this->shmId, IPC_RMID, nullptr);
+
+}
+
 SharedMemory::SharedMemory() = default;
 
 SharedMemory::~SharedMemory() = default;
