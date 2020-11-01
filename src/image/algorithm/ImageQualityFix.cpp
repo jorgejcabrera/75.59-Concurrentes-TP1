@@ -50,6 +50,7 @@ void ImageQualityFix::adjustInParallel(list<Image> images) {
                 Image image = imageRepository.findByPosition(i, memory1.getPtrData());
                 this->adjust(&image);
                 imageRepository.saveAtPosition(image, i, memory1.getPtrData());
+                sleep(rand() % 5);
                 exit(0);
             } catch (std::string &errormessage) {
                 std::cerr << errormessage << std::endl;

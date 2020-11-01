@@ -10,7 +10,6 @@
 
 using namespace std::chrono;
 
-
 string getTimestamp() {
     system_clock::time_point tp = system_clock::now();
     time_t tm = system_clock::to_time_t(tp);
@@ -32,7 +31,12 @@ Logger *Logger::instance = nullptr;
 
 Logger::~Logger() = default;
 
-Logger::Logger() = default;
+Logger::Logger() {
+    this->file.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt", ios::app);
+    if (!this->file.is_open()) {
+        cerr << "It was an error when open log file.\n";
+    }
+};
 
 Logger *Logger::getInstance() {
     if (Logger::instance == nullptr) {
@@ -43,29 +47,17 @@ Logger *Logger::getInstance() {
 
 void Logger::log(const std::string &mode, const std::list<Image> &images) {
     if (mode == "DEBUG") {
-        this->file.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt", ios::app);
-        if (this->file.is_open()) {
-            this->file << "[" << getTimestamp() << "] [" << mode << "] Images value: \n";
-            string strImages = toString(images);
-            this->file << strImages;
-            this->file.close();
-        } else {
-            cerr << "It was an error when open log file.\n";
-        }
+        this->file << "[" << getTimestamp() << "] [" << mode << "] Images value: \n";
+        string strImages = toString(images);
+        this->file << strImages;
+        this->file.close();
     }
 }
 
-
 void Logger::log(const std::string &mode, const std::string &message) {
     if (mode == "DEBUG") {
-        this->file.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt", ios::app);
-        if (this->file.is_open()) {
-            this->file << "[" << getTimestamp() << "] [" << mode << "] " << message << "\n";
-            this->file.close();
-        } else {
-            cerr << "It was an error when open log file.\n";
-        }
-
+        this->file << "[" << getTimestamp() << "] [" << mode << "] " << message << "\n";
+        this->file.close();
     }
 }
 

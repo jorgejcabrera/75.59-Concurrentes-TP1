@@ -21,10 +21,11 @@ string Image::toString() {
     ss << "{ \n id: " << this->id << ",\n width: " << this->getPixels()->begin()->second.size() << ",\n height: "
        << this->getPixels()->size() << ",\n" << " pixels: {\n";
     for (auto &pixel : this->pixels) {
+        ss << "     ";
         for (auto &itList : pixel.second) {
             ss << " [" << itList.getRed() << " " << itList.getBlue() << " " << itList.getGreen() << "]";
         }
-        ss << "\n" << "}" << "\n";
+        ss << "\n";
     }
     ss << "}" << "\n";
     return ss.str();
