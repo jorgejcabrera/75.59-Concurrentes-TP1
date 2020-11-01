@@ -14,15 +14,16 @@ class Logger {
 private:
     static Logger *instance;
     std::ofstream file;
+    string level;
 
-    Logger();
+    explicit Logger(string level);
 
 public:
-    static Logger *getInstance();
+    static Logger *getInstance(string level);
 
-    void log(const std::string &mode, const std::list<Image> &images);
+    void log(const std::list<Image> &images);
 
-    void log(const std::string &mode, const std::string &message);
+    void log(const std::string &message);
 
     virtual ~Logger();
 

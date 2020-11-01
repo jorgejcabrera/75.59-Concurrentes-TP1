@@ -7,6 +7,7 @@
 
 #include <ctime>
 #include <chrono>
+#include <utility>
 
 using namespace std::chrono;
 
@@ -29,34 +30,42 @@ string getTimestamp() {
 
 Logger *Logger::instance = nullptr;
 
-Logger::~Logger() = default;
-
-Logger::Logger() {
-    this->file.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt", ios::app);
-    if (!this->file.is_open()) {
-        cerr << "It was an error when open log file.\n";
-    }
-};
-
-Logger *Logger::getInstance() {
-    if (Logger::instance == nullptr) {
-        Logger::instance = new Logger();
-    }
-    return Logger::instance;
+Logger::~Logger() {
+    this->file.close();
 }
 
-void Logger::log(const std::string &mode, const std::list<Image> &images) {
-    if (mode == "DEBUG") {
-        this->file << "[" << getTimestamp() << "] [" << mode << "] Images value: \n";
+Logger::Logger(std::string level) {
+    this->level = std::move(level);
+}
+
+Logger *Logger::getInstance(std::string level) {
+    if (Logger::instance == nullptr) {
+        Logger::instance = new Logger(std::move(level));
+    }
+    auto logger = Logger::instance;
+    return logger;
+}
+
+void Logger::log(const std::list<Image> &images) {
+    this->file.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt", ios::app);
+    if (!this->file.is_open()) {
+        cout << "It was an error when open log file.\n";
+    }
+    if (this->level == "DEBUG") {
+        this->file << "[" << getTimestamp() << "] [" << this->level << "] Images value: \n";
         string strImages = toString(images);
         this->file << strImages;
         this->file.close();
     }
 }
 
-void Logger::log(const std::string &mode, const std::string &message) {
-    if (mode == "DEBUG") {
-        this->file << "[" << getTimestamp() << "] [" << mode << "] " << message << "\n";
+void Logger::log(const std::string &message) {
+    this->file.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt", ios::app);
+    if (!this->file.is_open()) {
+        cout << "It was an error when open log file.\n";
+    }
+    if (this->level == "DEBUG") {
+        this->file << "[" << getTimestamp() << "] [" << this->level << "] " << message << "\n";
         this->file.close();
     }
 }
@@ -69,4 +78,3 @@ string Logger::toString(const list<Image> &list) {
     }
     return ss.str();
 }
-

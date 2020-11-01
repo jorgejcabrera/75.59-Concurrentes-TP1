@@ -3,9 +3,8 @@
 //
 
 #include "Pixel.h"
-#include <stdlib.h>     /* srand, rand */
-#include <math.h>       /* pow */
-
+#include <cstdlib>     /* srand, rand */
+#include <cmath>       /* pow */
 
 Pixel::Pixel(int red, int blue, int green) {
     this->red = red;

@@ -14,7 +14,7 @@ using namespace std;
 
 class Image {
 private:
-    int id;
+    int id{};
     map<int, list<Pixel>> pixels;
 public:
     Image();
@@ -25,11 +25,11 @@ public:
 
     void setPixels(map<int, list<Pixel>> pixels);
 
-    Image overlap(Image image);
+    Image overlap(const Image& image);
 
     void setId(int id);
 
-    int getId();
+    int getId() const;
 
     size_t getSerializedSize();
 

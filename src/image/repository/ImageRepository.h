@@ -9,7 +9,7 @@
 
 class ImageRepository {
 private:
-    size_t sizeOfElement;
+    size_t sizeOfElement{};
 
     void save(Image image, int *ptr);
 
@@ -18,7 +18,7 @@ private:
 public:
     ImageRepository();
 
-    ImageRepository(size_t sizeOfElement);
+    explicit ImageRepository(size_t sizeOfElement);
 
     void saveAll(list<Image> images, int *ptr);
 

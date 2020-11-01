@@ -16,4 +16,6 @@ list<Image> Observatory::takeImagesCapture() {
     return images;
 }
 
+Observatory::Observatory() = default;
+
 Observatory::~Observatory() = default;

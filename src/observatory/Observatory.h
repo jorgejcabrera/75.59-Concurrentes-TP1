@@ -13,7 +13,7 @@ private:
 public:
     Observatory();
 
-    Observatory(list<Camera> cameras);
+    explicit Observatory(list<Camera> cameras);
 
     list<Image> takeImagesCapture();
 

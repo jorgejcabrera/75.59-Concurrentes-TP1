@@ -31,7 +31,7 @@ string Image::toString() {
     return ss.str();
 }
 
-Image Image::overlap(Image image) {
+Image Image::overlap(const Image& image) {
     if (rand() % 2 == 0) {
         return image;
     }
@@ -50,7 +50,7 @@ void Image::setId(int id) {
     this->id = id;
 }
 
-int Image::getId() {
+int Image::getId() const {
     return this->id;
 }
 

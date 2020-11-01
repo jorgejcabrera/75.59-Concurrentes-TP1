@@ -13,7 +13,7 @@ int main() {
             .withCamerasQuantity(camerasQuantity)
             .build();
     list<Image> images = observatory.takeImagesCapture();
-    Logger::getInstance()->log(logLevel, images);
+    Logger::getInstance(logLevel)->log(images);
 
     /** Creating Shared Memory */
     SharedMemory memory = SharedMemory(images.size());
@@ -24,7 +24,7 @@ int main() {
 
     /** Concurrencia */
     ImageQualityFix().adjustInParallel(images);
-    Logger::getInstance()->log(logLevel, "All images were adjusted successfully.");
+    Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
 
     // TODO esto se hace al final para esto hay que usar señales
     //Image finalImage = ImageQualityFix().overlap(&images);
