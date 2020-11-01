@@ -27,7 +27,7 @@ public:
 
     int *getPtrData();
 
-    //void free();
+    void free();
 
     virtual ~SharedMemory();
 };

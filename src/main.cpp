@@ -1,8 +1,13 @@
+#include <zconf.h>
 #include "observatory/ObservatoryBuilder.h"
 #include "image/algorithm/ImageQualityFix.h"
 #include "image/repository/ImageRepository.h"
 #include "memory/SharedMemory.h"
 #include "log/Logger.h"
+#include "signal/SIGINT_Handler.h"
+#include "signal/SignalHandler.h"
+
+void bloquearSigint();
 
 int main() {
     /** Initialing parameters */
@@ -16,8 +21,12 @@ int main() {
             .withCamerasQuantity(camerasQuantity)
             .build();
 
-    int iteration = 0;
-    while (iteration < 5) {
+    // event handler para la senial SIGINT (-2)
+    SIGINT_Handler sigint_handler;
+    // se registra el event handler declarado antes
+    SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
+
+    while (sigint_handler.getGracefulQuit() == 0) {
         Logger::getInstance(logLevel)->log("----------------------Taking images----------------------");
 
         /** Taking some images */
@@ -42,8 +51,19 @@ int main() {
         /** Final image */
         Image finalImage = ImageQualityFix::overlap(adjustedImages);
         Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
-        iteration++;
+
+        memory.free();
     }
-    
+
+    // se recibio la senial SIGINT, el proceso termina
+    SignalHandler::destruir();
+    cout << "Termino el proceso" << endl;
     return 0;
+}
+
+void bloquearSigint() {
+    sigset_t sa;
+    sigemptyset(&sa);
+    sigaddset(&sa, SIGINT);
+    sigprocmask(SIG_BLOCK, &sa, nullptr);
 }
