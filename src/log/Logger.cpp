@@ -46,13 +46,13 @@ Logger *Logger::getInstance(std::string level) {
     return logger;
 }
 
-void Logger::log(const std::list<Image> &images) {
+void Logger::log(const std::string &message, const std::list<Image> &images) {
     this->file.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt", ios::app);
     if (!this->file.is_open()) {
-        cout << "It was an error when open log file.\n";
+        cerr << "It was an error when open log file.\n";
     }
     if (this->level == "DEBUG") {
-        this->file << "[" << getTimestamp() << "] [" << this->level << "] Images value: \n";
+        this->file << "[" << getTimestamp() << "] [" << this->level << "] " << message << "\n";
         string strImages = toString(images);
         this->file << strImages;
         this->file.close();
@@ -62,7 +62,7 @@ void Logger::log(const std::list<Image> &images) {
 void Logger::log(const std::string &message) {
     this->file.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt", ios::app);
     if (!this->file.is_open()) {
-        cout << "It was an error when open log file.\n";
+        cerr << "It was an error when open log file.\n";
     }
     if (this->level == "DEBUG") {
         this->file << "[" << getTimestamp() << "] [" << this->level << "] " << message << "\n";

@@ -68,9 +68,18 @@ Image ImageRepository::findByPosition(int position, int *ptr) {
     return this->read(localPtr);
 }
 
-void ImageRepository::saveAtPosition(const Image& image, int position, int *ptr) {
+void ImageRepository::saveAtPosition(const Image &image, int position, int *ptr) {
     int *localPtr = ptr + this->sizeOfElement * position;
     this->save(image, localPtr);
+}
+
+list<Image> ImageRepository::findAll(int totalImages, int *ptr) {
+    list<Image> images;
+    for (int i = 0; i < totalImages; i++) {
+        Image anImage = findByPosition(i, ptr);
+        images.push_back(anImage);
+    }
+    return images;
 }
 
 ImageRepository::~ImageRepository() = default;

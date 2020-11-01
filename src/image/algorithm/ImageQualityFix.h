@@ -16,7 +16,7 @@ public:
 
     void adjustInParallel(list<Image> images);
 
-    static Image overlap(list<Image> *images);
+    static Image overlap(list<Image> images);
 
     virtual ~ImageQualityFix();
 };

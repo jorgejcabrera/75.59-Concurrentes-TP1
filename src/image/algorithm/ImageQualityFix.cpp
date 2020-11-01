@@ -21,15 +21,11 @@ void ImageQualityFix::adjust(Image *image) {
     }
 }
 
-Image ImageQualityFix::overlap(list<Image> *images) {
-    if (images->size() <= 1) {
-        return *images->begin();
-    }
-    Image overlappedImage;
-    for (auto it = images->begin(); it.operator++() != images->end(); it++) {
-        overlappedImage = overlappedImage.overlap(*it.operator->());
-    }
-    return overlappedImage;
+Image ImageQualityFix::overlap(list<Image> images) {
+    int position = rand() % images.size();
+    auto it = images.begin();
+    std::advance(it, position);
+    return it.operator*();
 }
 
 void ImageQualityFix::adjustInParallel(list<Image> images) {
@@ -59,7 +55,7 @@ void ImageQualityFix::adjustInParallel(list<Image> images) {
     }
 
     for (int i = 0; i < n; ++i) {
-        wait(NULL);
+        wait(nullptr);
     }
 }
 

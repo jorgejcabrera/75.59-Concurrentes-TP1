@@ -11,7 +11,7 @@ class ImageRepository {
 private:
     size_t sizeOfElement{};
 
-    void save(Image image, int *ptr);
+    static void save(Image image, int *ptr);
 
     static Image read(const int *ptr);
 
@@ -25,6 +25,8 @@ public:
     void saveAtPosition(const Image &image, int position, int *ptr);
 
     Image findByPosition(int position, int *ptr);
+
+    list<Image> findAll(int totalImages, int *ptr);
 
     virtual ~ImageRepository();
 };

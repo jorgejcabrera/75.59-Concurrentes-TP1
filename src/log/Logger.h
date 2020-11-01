@@ -21,7 +21,7 @@ private:
 public:
     static Logger *getInstance(string level);
 
-    void log(const std::list<Image> &images);
+    void log(const std::string &message, const std::list<Image> &images);
 
     void log(const std::string &message);
 

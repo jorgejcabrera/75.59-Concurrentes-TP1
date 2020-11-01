@@ -5,15 +5,21 @@
 #include "log/Logger.h"
 
 int main() {
-    /** Taking some photos */
+
+    /** Initialing parameters */
     int camerasQuantity = 3;
     string logLevel = "DEBUG";
+    int width = 2;
+    int height = 2;
+
     Observatory observatory = ObservatoryBuilder()
-            .withImageResolution(Resolution(5, 5))
+            .withImageResolution(Resolution(width, height))
             .withCamerasQuantity(camerasQuantity)
             .build();
+
+    /** Taking some images */
     list<Image> images = observatory.takeImagesCapture();
-    Logger::getInstance(logLevel)->log(images);
+    Logger::getInstance(logLevel)->log("Initial images value: ", images);
 
     /** Creating Shared Memory */
     SharedMemory memory = SharedMemory(images.size());
@@ -26,8 +32,13 @@ int main() {
     ImageQualityFix().adjustInParallel(images);
     Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
 
-    // TODO esto se hace al final para esto hay que usar señales
-    //Image finalImage = ImageQualityFix().overlap(&images);
+    /** Retrieving adjusted images */
+    list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());
+    Logger::getInstance(logLevel)->log("Adjusted images value: ", adjustedImages);
+
+    /** Final image */
+    Image finalImage = ImageQualityFix::overlap(adjustedImages);
+    Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
 
 
     return 0;
