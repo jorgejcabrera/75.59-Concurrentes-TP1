@@ -16,6 +16,8 @@ int main() {
     int width = 2;
     int height = 2;
 
+    cout << "Process id: " << getpid() << " \n";
+
     Observatory observatory = ObservatoryBuilder()
             .withImageResolution(Resolution(width, height))
             .withCamerasQuantity(camerasQuantity)
@@ -57,7 +59,7 @@ int main() {
 
     // se recibio la senial SIGINT, el proceso termina
     SignalHandler::destruir();
-    cout << "Termino el proceso" << endl;
+    Logger::getInstance(logLevel)->log("Process has received a signal and exit with status code 0");
     return 0;
 }
 
