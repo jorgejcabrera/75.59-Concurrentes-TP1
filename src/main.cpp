@@ -26,7 +26,7 @@ int main() {
     // event handler para la senial SIGINT (-2)
     SIGINT_Handler sigint_handler;
     // se registra el event handler declarado antes
-    SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
+    SignalHandler::registerHandler(SIGINT, &sigint_handler);
 
     while (sigint_handler.getGracefulQuit() == 0) {
         Logger::getInstance(logLevel)->log("----------------------Taking images----------------------");
@@ -42,7 +42,7 @@ int main() {
         /** Save all images */
         imageRepository.saveAll(images, memory.getPtrData());
 
-        /** Concurrencia */
+        /** Concurrency */
         ImageQualityFix().adjustInParallel(images);
         Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
 
@@ -57,9 +57,9 @@ int main() {
         memory.free();
     }
 
-    // se recibio la senial SIGINT, el proceso termina
-    SignalHandler::destruir();
-    Logger::getInstance(logLevel)->log("Process has received a signal and exit with status code 0");
+    /** Signal was received and main process must be closed */
+    SignalHandler::destroy();
+    Logger::getInstance(logLevel)->log("Process has received a signal and then it was terminated with status code 0");
     return 0;
 }
 
