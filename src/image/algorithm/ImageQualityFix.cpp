@@ -39,8 +39,8 @@ void ImageQualityFix::adjustInParallel(list<Image> images) {
             abort();
         } else if (procId == 0) {
             try {
-                cout << "I am a child. My pid is: " << getpid() << " my ppid is: " << getppid() << ", element: " << i
-                     << " \n";
+                /*cout << "I am a child. My pid is: " << getpid() << " my ppid is: " << getppid() << ", element: " << i
+                     << " \n";*/
                 SharedMemory memory1 = SharedMemory(images.size());
                 ImageRepository imageRepository = ImageRepository(images.begin()->getSerializedSize());
                 Image image = imageRepository.findByPosition(i, memory1.getPtrData());
