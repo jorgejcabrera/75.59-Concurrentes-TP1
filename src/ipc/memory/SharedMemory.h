@@ -20,9 +20,7 @@ private:
 public:
     SharedMemory();
 
-    SharedMemory(size_t size);
-
-    //void write(const int &data, size_t offset);
+    explicit SharedMemory(size_t size);
 
     int *getPtrData();
 

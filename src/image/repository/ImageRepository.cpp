@@ -5,7 +5,7 @@
 #include "ImageRepository.h"
 #include "../../observatory/camera/Resolution.h"
 
-void ImageRepository::save(Image image, int *ptr) {
+void ImageRepository::serialize(Image image, int *ptr) {
     ptr[0] = image.getId();
     int width = image.getPixels()->begin()->second.size();
     ptr[1] = width;
@@ -23,7 +23,7 @@ void ImageRepository::save(Image image, int *ptr) {
     }
 }
 
-Image ImageRepository::read(const int *bytes) {
+Image ImageRepository::hydrate(const int *bytes) {
     int offset = 0;
     int id = bytes[offset];
     int width = bytes[offset + 1];
@@ -54,7 +54,7 @@ void ImageRepository::saveAll(list<Image> images, int *ptr) {
     int *localPtr = ptr;
     for (auto it = images.begin(); it != images.end(); it++) {
         Image image = it.operator*();
-        this->save(image, localPtr);
+        this->serialize(image, localPtr);
         localPtr = localPtr + image.getSerializedSize();
     }
 }
@@ -65,12 +65,12 @@ ImageRepository::ImageRepository(size_t sizeOfElement) {
 
 Image ImageRepository::findByPosition(int position, int *ptr) {
     int *localPtr = ptr + this->sizeOfElement * position;
-    return this->read(localPtr);
+    return this->hydrate(localPtr);
 }
 
 void ImageRepository::saveAtPosition(const Image &image, int position, int *ptr) {
     int *localPtr = ptr + this->sizeOfElement * position;
-    this->save(image, localPtr);
+    this->serialize(image, localPtr);
 }
 
 list<Image> ImageRepository::findAll(int totalImages, int *ptr) {

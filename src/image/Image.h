@@ -25,8 +25,6 @@ public:
 
     void setPixels(map<int, list<Pixel>> pixels);
 
-    Image overlap(const Image& image);
-
     void setId(int id);
 
     int getId() const;
