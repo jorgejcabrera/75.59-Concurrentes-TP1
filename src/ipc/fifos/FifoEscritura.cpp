@@ -4,16 +4,17 @@
 
 #include "FifoEscritura.h"
 
-FifoEscritura::FifoEscritura(const std::string nombre) : Fifo(nombre) {
+using namespace std;
+
+FifoEscritura::FifoEscritura(const string &nombre) : Fifo(nombre) {
 }
 
-FifoEscritura::~FifoEscritura() {
-}
+FifoEscritura::~FifoEscritura() = default;
 
 void FifoEscritura::abrir() {
     fd = open(nombre.c_str(), O_WRONLY);
 }
 
-ssize_t FifoEscritura::escribir(const void *buffer, const ssize_t buffsize) const {
+ssize_t FifoEscritura::escribir(int *buffer, const ssize_t buffsize) const {
     return write(fd, buffer, buffsize);
 }

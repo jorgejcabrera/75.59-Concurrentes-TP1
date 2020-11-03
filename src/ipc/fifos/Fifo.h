@@ -11,9 +11,11 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+using namespace std;
+
 class Fifo {
 public:
-    Fifo(const std::string nombre);
+    explicit Fifo(const string &nombre);
 
     virtual ~Fifo();
 
@@ -24,7 +26,7 @@ public:
     void eliminar() const;
 
 protected:
-    std::string nombre;
+    string nombre;
     int fd;
 };
 
