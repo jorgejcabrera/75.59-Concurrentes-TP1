@@ -11,9 +11,9 @@ class ImageRepository {
 private:
     size_t sizeOfElement{};
 
-    static void save(Image image, int *ptr);
+    static void serialize(Image image, int *ptr);
 
-    static Image read(const int *ptr);
+    static Image hydrate(const int *ptr);
 
 public:
     ImageRepository();
