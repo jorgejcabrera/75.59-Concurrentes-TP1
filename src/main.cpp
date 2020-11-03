@@ -2,12 +2,16 @@
 #include "observatory/ObservatoryBuilder.h"
 #include "image/algorithm/ImageQualityFix.h"
 #include "image/repository/ImageRepository.h"
-#include "memory/SharedMemory.h"
+#include "ipc/memory/SharedMemory.h"
 #include "log/Logger.h"
 #include "signal/SIGINT_Handler.h"
 #include "signal/SignalHandler.h"
 
 void bloquearSigint();
+
+size_t sizeOfElement(list<Image> &images);
+
+size_t sizeRequired(list<Image> &images);
 
 int main() {
     /** Initialing parameters */
@@ -36,8 +40,8 @@ int main() {
         Logger::getInstance(logLevel)->log("Initial images value: ", images);
 
         /** Creating Shared Memory */
-        SharedMemory memory = SharedMemory(images.size());
-        ImageRepository imageRepository = ImageRepository(images.begin()->getSerializedSize());
+        SharedMemory memory = SharedMemory(sizeRequired(images));
+        ImageRepository imageRepository = ImageRepository(sizeOfElement(images));
 
         /** Save all images */
         imageRepository.saveAll(images, memory.getPtrData());
@@ -61,6 +65,13 @@ int main() {
     SignalHandler::destroy();
     Logger::getInstance(logLevel)->log("Process has received a signal and then it was terminated with status code 0");
     return 0;
+}
+
+size_t sizeOfElement(list<Image> &images) { return images.begin()->getSerializedSize(); }
+
+size_t sizeRequired(list<Image> &images) {
+    size_t sizeOfImage = sizeOfElement(images);
+    return images.size() * sizeOfElement(images);
 }
 
 void bloquearSigint() {

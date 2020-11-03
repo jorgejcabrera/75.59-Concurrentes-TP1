@@ -17,11 +17,10 @@ private:
 
     void create(const std::string &pathName, char word, size_t capacity);
 
-
 public:
     SharedMemory();
 
-    SharedMemory(int elements);
+    SharedMemory(size_t size);
 
     //void write(const int &data, size_t offset);
 

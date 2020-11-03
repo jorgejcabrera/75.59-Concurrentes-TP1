@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 #include "ImageQualityFix.h"
-#include "../../memory/SharedMemory.h"
+#include "../../ipc/memory/SharedMemory.h"
 #include "../repository/ImageRepository.h"
 
 ImageQualityFix::ImageQualityFix() = default;
