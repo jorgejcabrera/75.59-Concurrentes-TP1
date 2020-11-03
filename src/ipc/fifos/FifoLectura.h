@@ -9,14 +9,13 @@
 
 class FifoLectura : public Fifo {
 public:
-    FifoLectura(const std::string nombre);
+    explicit FifoLectura(string nombre);
 
-    ~FifoLectura();
+    ~FifoLectura() override;
 
-    void abrir();
+    void abrir() override;
 
-    ssize_t leer(void *buffer, const ssize_t buffsize) const;
+    ssize_t leer(int *buffer, ssize_t buffsize) const;
 };
-
 
 #endif //INC_75_59_CONCURRENTES_TP1_FIFOLECTURA_H

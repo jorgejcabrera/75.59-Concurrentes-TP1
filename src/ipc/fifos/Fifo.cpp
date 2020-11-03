@@ -4,12 +4,13 @@
 
 #include "Fifo.h"
 
-Fifo::Fifo(const std::string nombre) : nombre(nombre), fd(-1) {
+using namespace std;
+
+Fifo::Fifo(const string &nombre) : nombre(nombre), fd(-1) {
     mknod(static_cast<const char *>(nombre.c_str()), S_IFIFO | 0666, 0);
 }
 
-Fifo::~Fifo() {
-}
+Fifo::~Fifo() = default;
 
 void Fifo::cerrar() {
     close(fd);

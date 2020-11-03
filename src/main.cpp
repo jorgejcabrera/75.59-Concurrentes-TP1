@@ -7,17 +7,17 @@
 #include "signal/SIGINT_Handler.h"
 #include "signal/SignalHandler.h"
 
-void bloquearSigint();
-
 size_t sizeOfElement(list<Image> &images);
 
 size_t sizeRequired(list<Image> &images);
+
+bool shouldTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration);
 
 int main() {
     /** Initialing parameters */
     int camerasQuantity = 3;
     string logLevel = "DEBUG";
-    int width = 2;
+    int width = 3;
     int height = 2;
 
     cout << "Process id: " << getpid() << " \n";
@@ -32,7 +32,9 @@ int main() {
     // se registra el event handler declarado antes
     SignalHandler::registerHandler(SIGINT, &sigint_handler);
 
-    while (sigint_handler.getGracefulQuit() == 0) {
+    int iteration = 0;
+    while (shouldTakeMoreImages(sigint_handler, iteration)) {
+        iteration++;
         Logger::getInstance(logLevel)->log("----------------------Taking images----------------------");
 
         /** Taking some images */
@@ -44,7 +46,7 @@ int main() {
         ImageRepository imageRepository = ImageRepository(sizeOfElement(images));
 
         /** Save all images */
-        imageRepository.saveAll(images, memory.getPtrData());
+        ImageRepository::saveAll(images, memory.getPtrData());
 
         /** Concurrency */
         ImageQualityFix().adjustInParallel(images);
@@ -67,16 +69,15 @@ int main() {
     return 0;
 }
 
+bool shouldTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration) {
+    int maxIterationQuantity = 100;
+    if (iteration > maxIterationQuantity)
+        return false;
+    return sigint_handler.getGracefulQuit() == 0;
+}
+
 size_t sizeOfElement(list<Image> &images) { return images.begin()->getSerializedSize(); }
 
 size_t sizeRequired(list<Image> &images) {
-    size_t sizeOfImage = sizeOfElement(images);
     return images.size() * sizeOfElement(images);
-}
-
-void bloquearSigint() {
-    sigset_t sa;
-    sigemptyset(&sa);
-    sigaddset(&sa, SIGINT);
-    sigprocmask(SIG_BLOCK, &sa, nullptr);
 }

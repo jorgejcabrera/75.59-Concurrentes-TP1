@@ -11,22 +11,18 @@ class ImageRepository {
 private:
     size_t sizeOfElement{};
 
-    static void serialize(Image image, int *ptr);
-
-    static Image hydrate(const int *ptr);
-
 public:
     ImageRepository();
 
     explicit ImageRepository(size_t sizeOfElement);
 
-    void saveAll(list<Image> images, int *ptr);
+    static void saveAll(list<Image> images, int *ptr);
 
-    void saveAtPosition(const Image &image, int position, int *ptr);
+    void saveAtPosition(const Image &image, int position, int *ptr) const;
 
-    Image findByPosition(int position, int *ptr);
+    Image findByPosition(int position, int *ptr) const;
 
-    list<Image> findAll(int totalImages, int *ptr);
+    list<Image> findAll(int totalImages, int *ptr) const;
 
     virtual ~ImageRepository();
 };
