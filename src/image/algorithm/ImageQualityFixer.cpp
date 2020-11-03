@@ -4,15 +4,15 @@
 
 #include <unistd.h>
 
-#include "ImageQualityFix.h"
+#include "ImageQualityFixer.h"
 #include "../../ipc/memory/SharedMemory.h"
 #include "../repository/ImageRepository.h"
 
-ImageQualityFix::ImageQualityFix() = default;
+ImageQualityFixer::ImageQualityFixer() = default;
 
-ImageQualityFix::~ImageQualityFix() = default;
+ImageQualityFixer::~ImageQualityFixer() = default;
 
-void ImageQualityFix::adjust(Image *image) {
+void ImageQualityFixer::adjust(Image *image) {
     map<int, list<Pixel>> *pixels = image->getPixels();
     for (auto &listOfPixels : *pixels) {
         for (auto &pixel : listOfPixels.second) {
@@ -21,14 +21,14 @@ void ImageQualityFix::adjust(Image *image) {
     }
 }
 
-Image ImageQualityFix::overlap(list<Image> images) {
+Image ImageQualityFixer::overlap(list<Image> images) {
     int position = rand() % images.size();
     auto it = images.begin();
     std::advance(it, position);
     return it.operator*();
 }
 
-void ImageQualityFix::adjustInParallel(list<Image> images) {
+void ImageQualityFixer::adjustInParallel(list<Image> images) {
     int imageQuantity = images.size();
     int n = imageQuantity;
 
@@ -45,7 +45,7 @@ void ImageQualityFix::adjustInParallel(list<Image> images) {
                 ImageRepository imageRepository = ImageRepository(images.begin()->getSerializedSize());
                 Image image = imageRepository.findByPosition(i, memory1.getPtrData());
                 this->adjust(&image);
-                imageRepository.saveAtPosition(image, i, memory1.getPtrData());
+                imageRepository.saveInPosition(image, i, memory1.getPtrData());
                 sleep(rand() % 2);
                 exit(0);
             } catch (std::string &errormessage) {

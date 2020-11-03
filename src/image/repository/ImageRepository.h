@@ -18,7 +18,7 @@ public:
 
     static void saveAll(list<Image> images, int *ptr);
 
-    void saveAtPosition(const Image &image, int position, int *ptr) const;
+    void saveInPosition(const Image &image, int position, int *ptr) const;
 
     Image findByPosition(int position, int *ptr) const;
 

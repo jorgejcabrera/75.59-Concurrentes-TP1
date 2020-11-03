@@ -1,6 +1,6 @@
 #include <zconf.h>
 #include "observatory/ObservatoryBuilder.h"
-#include "image/algorithm/ImageQualityFix.h"
+#include "image/algorithm/ImageQualityFixer.h"
 #include "image/repository/ImageRepository.h"
 #include "ipc/memory/SharedMemory.h"
 #include "log/Logger.h"
@@ -11,7 +11,7 @@ size_t sizeOfElement(list<Image> &images);
 
 size_t sizeRequired(list<Image> &images);
 
-bool shouldTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration);
+bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration);
 
 int main() {
     /** Initialing parameters */
@@ -33,7 +33,7 @@ int main() {
     SignalHandler::registerHandler(SIGINT, &sigint_handler);
 
     int iteration = 0;
-    while (shouldTakeMoreImages(sigint_handler, iteration)) {
+    while (shouldItTakeMoreImages(sigint_handler, iteration)) {
         iteration++;
         Logger::getInstance(logLevel)->log("----------------------Taking images----------------------");
 
@@ -41,15 +41,15 @@ int main() {
         list<Image> images = observatory.takeImagesCapture();
         Logger::getInstance(logLevel)->log("Initial images value: ", images);
 
-        /** Creating Shared Memory */
+        /** Creating a Shared Memory Buck */
         SharedMemory memory = SharedMemory(sizeRequired(images));
         ImageRepository imageRepository = ImageRepository(sizeOfElement(images));
 
-        /** Save all images */
+        /** Saving all images */
         ImageRepository::saveAll(images, memory.getPtrData());
 
-        /** Concurrency */
-        ImageQualityFix().adjustInParallel(images);
+        /** Parallel process */
+        ImageQualityFixer().adjustInParallel(images);
         Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
 
         /** Retrieving adjusted images */
@@ -57,19 +57,19 @@ int main() {
         Logger::getInstance(logLevel)->log("Adjusted images value: ", adjustedImages);
 
         /** Final image */
-        Image finalImage = ImageQualityFix::overlap(adjustedImages);
+        Image finalImage = ImageQualityFixer::overlap(adjustedImages);
         Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
 
         memory.free();
     }
 
-    /** Signal was received and main process must be closed */
+    /** Signal was received and the main process must be closed */
     SignalHandler::destroy();
-    Logger::getInstance(logLevel)->log("Process has received a signal and then it was terminated with status code 0");
+    Logger::getInstance(logLevel)->log("Process has received a signal or it has reached the maximum of iterations, and then it was finished with status code 0.");
     return 0;
 }
 
-bool shouldTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration) {
+bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration) {
     int maxIterationQuantity = 100;
     if (iteration > maxIterationQuantity)
         return false;
