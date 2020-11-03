@@ -2,7 +2,7 @@
 #include "observatory/ObservatoryBuilder.h"
 #include "image/algorithm/ImageQualityFix.h"
 #include "image/repository/ImageRepository.h"
-#include "memory/SharedMemory.h"
+#include "ipc/memory/SharedMemory.h"
 #include "log/Logger.h"
 #include "signal/SIGINT_Handler.h"
 #include "signal/SignalHandler.h"

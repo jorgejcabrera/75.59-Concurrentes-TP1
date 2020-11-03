@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="75_59_Concurrentes_TP1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="75_59_Concurrentes_TP1">
+				<Option output="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/75_59_Concurrentes_TP1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 75_59_Concurrentes_TP1"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="75_59_Concurrentes_TP1/fast">
+				<Option output="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/75_59_Concurrentes_TP1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 75_59_Concurrentes_TP1/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/Image.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/Image.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/Pixel.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/Pixel.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/algorithm/ImageQualityFix.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/algorithm/ImageQualityFix.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/builder/ImageBuilder.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/builder/ImageBuilder.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/repository/ImageRepository.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/repository/ImageRepository.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/Fifo.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/Fifo.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoEscritura.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoEscritura.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoLectura.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoLectura.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/memory/SharedMemory.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/memory/SharedMemory.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/pipes/Pipe.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/pipes/Pipe.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/log/Logger.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/log/Logger.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/main.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/observatory/Observatory.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/observatory/Observatory.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/observatory/ObservatoryBuilder.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/observatory/ObservatoryBuilder.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/observatory/camera/Camera.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/observatory/camera/Camera.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/observatory/camera/Resolution.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/observatory/camera/Resolution.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/signal/EventHandler.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/signal/SIGINT_Handler.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/signal/SignalHandler.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/signal/SignalHandler.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
