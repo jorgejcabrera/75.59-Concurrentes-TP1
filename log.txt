@@ -1,5 +1,5 @@
-[2020-11-03 13:49:44.642] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:44.643] [DEBUG] Initial images value: 
+[2020-11-03 13:54:43.228] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:43.228] [DEBUG] Initial images value: 
 { 
  id: 484492,
  width: 2,
@@ -24,8 +24,8 @@
       [107 214 136] [7 153 146]
       [72 51 98] [65 243 13]
 }
-[2020-11-03 13:49:44.649] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:44.649] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:43.234] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:43.234] [DEBUG] Adjusted images value: 
 { 
  id: 484492,
  width: 2,
@@ -50,7 +50,7 @@
       [11449 45796 18496] [49 23409 21316]
       [71 50 97] [4225 59049 169]
 }
-[2020-11-03 13:49:44.649] [DEBUG] Final image: { 
+[2020-11-03 13:54:43.234] [DEBUG] Final image: { 
  id: 484492,
  width: 2,
  height: 2,
@@ -59,8 +59,8 @@
       [215 253 66] [5929 23104 7225]
 }
 
-[2020-11-03 13:49:44.649] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:44.649] [DEBUG] Initial images value: 
+[2020-11-03 13:54:43.234] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:43.235] [DEBUG] Initial images value: 
 { 
  id: 616708,
  width: 2,
@@ -85,8 +85,8 @@
       [241 176 196] [21 138 229]
       [155 77 57] [246 247 232]
 }
-[2020-11-03 13:49:45.654] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:45.654] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:44.241] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:44.241] [DEBUG] Adjusted images value: 
 { 
  id: 616708,
  width: 2,
@@ -111,7 +111,7 @@
       [58081 30976 38416] [441 19044 52441]
       [154 76 56] [60516 61009 53824]
 }
-[2020-11-03 13:49:45.655] [DEBUG] Final image: { 
+[2020-11-03 13:54:44.242] [DEBUG] Final image: { 
  id: 339425,
  width: 2,
  height: 2,
@@ -120,8 +120,8 @@
       [154 76 56] [60516 61009 53824]
 }
 
-[2020-11-03 13:49:45.655] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:45.655] [DEBUG] Initial images value: 
+[2020-11-03 13:54:44.242] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:44.242] [DEBUG] Initial images value: 
 { 
  id: 799505,
  width: 2,
@@ -146,8 +146,8 @@
       [25 253 54] [80 233 183]
       [129 143 195] [58 30 15]
 }
-[2020-11-03 13:49:45.661] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:45.661] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:44.248] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:44.248] [DEBUG] Adjusted images value: 
 { 
  id: 799505,
  width: 2,
@@ -172,7 +172,7 @@
       [24 252 53] [79 232 182]
       [16641 20449 38025] [57 29 14]
 }
-[2020-11-03 13:49:45.661] [DEBUG] Final image: { 
+[2020-11-03 13:54:44.249] [DEBUG] Final image: { 
  id: 827968,
  width: 2,
  height: 2,
@@ -181,8 +181,8 @@
       [16641 20449 38025] [57 29 14]
 }
 
-[2020-11-03 13:49:45.661] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:45.661] [DEBUG] Initial images value: 
+[2020-11-03 13:54:44.249] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:44.249] [DEBUG] Initial images value: 
 { 
  id: 842082,
  width: 2,
@@ -207,8 +207,8 @@
       [120 151 151] [14 52 98]
       [7 215 94] [71 161 88]
 }
-[2020-11-03 13:49:45.666] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:45.666] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:44.254] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:44.255] [DEBUG] Adjusted images value: 
 { 
  id: 842082,
  width: 2,
@@ -233,7 +233,7 @@
       [119 150 150] [196 2704 9604]
       [6 214 93] [5041 25921 7744]
 }
-[2020-11-03 13:49:45.666] [DEBUG] Final image: { 
+[2020-11-03 13:54:44.255] [DEBUG] Final image: { 
  id: 842082,
  width: 2,
  height: 2,
@@ -242,8 +242,8 @@
       [200 177 221] [31684 60516 32761]
 }
 
-[2020-11-03 13:49:45.667] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:45.667] [DEBUG] Initial images value: 
+[2020-11-03 13:54:44.255] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:44.255] [DEBUG] Initial images value: 
 { 
  id: 941363,
  width: 2,
@@ -268,8 +268,8 @@
       [248 101 143] [180 240 128]
       [183 203 25] [238 154 235]
 }
-[2020-11-03 13:49:45.672] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:45.672] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:44.260] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:44.260] [DEBUG] Adjusted images value: 
 { 
  id: 941363,
  width: 2,
@@ -294,7 +294,7 @@
       [247 100 142] [179 239 127]
       [33489 41209 625] [237 153 234]
 }
-[2020-11-03 13:49:45.672] [DEBUG] Final image: { 
+[2020-11-03 13:54:44.260] [DEBUG] Final image: { 
  id: 941363,
  width: 2,
  height: 2,
@@ -303,8 +303,8 @@
       [24336 38416 2116] [53 41 1]
 }
 
-[2020-11-03 13:49:45.672] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:45.672] [DEBUG] Initial images value: 
+[2020-11-03 13:54:44.260] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:44.261] [DEBUG] Initial images value: 
 { 
  id: 975825,
  width: 2,
@@ -329,8 +329,8 @@
       [242 179 140] [109 72 208]
       [30 72 27] [45 79 175]
 }
-[2020-11-03 13:49:45.678] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:45.678] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:44.266] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:44.266] [DEBUG] Adjusted images value: 
 { 
  id: 975825,
  width: 2,
@@ -355,7 +355,7 @@
       [58564 32041 19600] [108 71 207]
       [900 5184 729] [2025 6241 30625]
 }
-[2020-11-03 13:49:45.678] [DEBUG] Final image: { 
+[2020-11-03 13:54:44.266] [DEBUG] Final image: { 
  id: 30193,
  width: 2,
  height: 2,
@@ -364,8 +364,8 @@
       [900 5184 729] [2025 6241 30625]
 }
 
-[2020-11-03 13:49:45.678] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:45.678] [DEBUG] Initial images value: 
+[2020-11-03 13:54:44.266] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:44.266] [DEBUG] Initial images value: 
 { 
  id: 760808,
  width: 2,
@@ -390,8 +390,8 @@
       [22 100 65] [185 53 21]
       [232 240 60] [149 216 232]
 }
-[2020-11-03 13:49:46.684] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:46.684] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:45.273] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:45.273] [DEBUG] Adjusted images value: 
 { 
  id: 760808,
  width: 2,
@@ -416,7 +416,7 @@
       [21 99 64] [184 52 20]
       [231 239 59] [148 215 231]
 }
-[2020-11-03 13:49:46.685] [DEBUG] Final image: { 
+[2020-11-03 13:54:45.274] [DEBUG] Final image: { 
  id: 760808,
  width: 2,
  height: 2,
@@ -425,8 +425,8 @@
       [243 195 240] [154 147 149]
 }
 
-[2020-11-03 13:49:46.685] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:46.685] [DEBUG] Initial images value: 
+[2020-11-03 13:54:45.274] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:45.274] [DEBUG] Initial images value: 
 { 
  id: 578553,
  width: 2,
@@ -451,8 +451,8 @@
       [202 173 200] [106 219 237]
       [37 128 26] [154 157 207]
 }
-[2020-11-03 13:49:47.692] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:47.692] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:46.281] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:46.282] [DEBUG] Adjusted images value: 
 { 
  id: 578553,
  width: 2,
@@ -477,7 +477,7 @@
       [201 172 199] [11236 47961 56169]
       [1369 16384 676] [23716 24649 42849]
 }
-[2020-11-03 13:49:47.693] [DEBUG] Final image: { 
+[2020-11-03 13:54:46.282] [DEBUG] Final image: { 
  id: 578553,
  width: 2,
  height: 2,
@@ -486,8 +486,8 @@
       [63504 7921 2500] [361 1 81]
 }
 
-[2020-11-03 13:49:47.693] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:47.693] [DEBUG] Initial images value: 
+[2020-11-03 13:54:46.282] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:46.282] [DEBUG] Initial images value: 
 { 
  id: 998877,
  width: 2,
@@ -512,8 +512,8 @@
       [96 222 139] [201 89 2]
       [185 16 50] [98 205 185]
 }
-[2020-11-03 13:49:48.701] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:48.701] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:47.289] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:47.289] [DEBUG] Adjusted images value: 
 { 
  id: 998877,
  width: 2,
@@ -538,7 +538,7 @@
       [9216 49284 19321] [40401 7921 4]
       [184 15 49] [9604 42025 34225]
 }
-[2020-11-03 13:49:48.701] [DEBUG] Final image: { 
+[2020-11-03 13:54:47.289] [DEBUG] Final image: { 
  id: 841238,
  width: 2,
  height: 2,
@@ -547,8 +547,8 @@
       [122 231 113] [38025 58564 32041]
 }
 
-[2020-11-03 13:49:48.701] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:48.701] [DEBUG] Initial images value: 
+[2020-11-03 13:54:47.290] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:47.290] [DEBUG] Initial images value: 
 { 
  id: 711748,
  width: 2,
@@ -573,8 +573,8 @@
       [32 107 12] [136 5 170]
       [235 244 150] [62 124 71]
 }
-[2020-11-03 13:49:49.708] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:49.709] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:48.296] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:48.296] [DEBUG] Adjusted images value: 
 { 
  id: 711748,
  width: 2,
@@ -599,7 +599,7 @@
       [31 106 11] [18496 25 28900]
       [234 243 149] [3844 15376 5041]
 }
-[2020-11-03 13:49:49.709] [DEBUG] Final image: { 
+[2020-11-03 13:54:48.297] [DEBUG] Final image: { 
  id: 135231,
  width: 2,
  height: 2,
@@ -608,8 +608,8 @@
       [75 236 178] [12769 256 56644]
 }
 
-[2020-11-03 13:49:49.709] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:49.709] [DEBUG] Initial images value: 
+[2020-11-03 13:54:48.297] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:48.297] [DEBUG] Initial images value: 
 { 
  id: 753229,
  width: 2,
@@ -634,8 +634,8 @@
       [150 159 116] [87 175 225]
       [133 136 130] [106 65 157]
 }
-[2020-11-03 13:49:50.717] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:50.717] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:49.305] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:49.305] [DEBUG] Adjusted images value: 
 { 
  id: 753229,
  width: 2,
@@ -660,7 +660,7 @@
       [22500 25281 13456] [86 174 224]
       [17689 18496 16900] [105 64 156]
 }
-[2020-11-03 13:49:50.717] [DEBUG] Final image: { 
+[2020-11-03 13:54:49.306] [DEBUG] Final image: { 
  id: 783320,
  width: 2,
  height: 2,
@@ -669,8 +669,8 @@
       [17689 18496 16900] [105 64 156]
 }
 
-[2020-11-03 13:49:50.717] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:50.718] [DEBUG] Initial images value: 
+[2020-11-03 13:54:49.306] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:49.306] [DEBUG] Initial images value: 
 { 
  id: 262410,
  width: 2,
@@ -695,8 +695,8 @@
       [235 155 206] [9 161 125]
       [116 18 75] [70 5 173]
 }
-[2020-11-03 13:49:51.725] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:51.725] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:50.314] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:50.314] [DEBUG] Adjusted images value: 
 { 
  id: 262410,
  width: 2,
@@ -721,7 +721,7 @@
       [55225 24025 42436] [81 25921 15625]
       [115 17 74] [4900 25 29929]
 }
-[2020-11-03 13:49:51.726] [DEBUG] Final image: { 
+[2020-11-03 13:54:50.314] [DEBUG] Final image: { 
  id: 343127,
  width: 2,
  height: 2,
@@ -730,8 +730,8 @@
       [79 10 140] [56644 6400 961]
 }
 
-[2020-11-03 13:49:51.727] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:51.727] [DEBUG] Initial images value: 
+[2020-11-03 13:54:50.314] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:50.315] [DEBUG] Initial images value: 
 { 
  id: 901720,
  width: 2,
@@ -756,8 +756,8 @@
       [173 181 144] [16 230 61]
       [27 102 79] [139 218 45]
 }
-[2020-11-03 13:49:51.733] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:51.733] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:50.321] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:50.321] [DEBUG] Adjusted images value: 
 { 
  id: 901720,
  width: 2,
@@ -782,7 +782,7 @@
       [29929 32761 20736] [256 52900 3721]
       [729 10404 6241] [138 217 44]
 }
-[2020-11-03 13:49:51.733] [DEBUG] Final image: { 
+[2020-11-03 13:54:50.321] [DEBUG] Final image: { 
  id: 326671,
  width: 2,
  height: 2,
@@ -791,8 +791,8 @@
       [13689 1849 18496] [26 94 79]
 }
 
-[2020-11-03 13:49:51.733] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:51.733] [DEBUG] Initial images value: 
+[2020-11-03 13:54:50.322] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:50.322] [DEBUG] Initial images value: 
 { 
  id: 980108,
  width: 2,
@@ -817,8 +817,8 @@
       [64 152 5] [128 71 61]
       [188 46 104] [154 59 232]
 }
-[2020-11-03 13:49:51.739] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:51.739] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:50.328] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:50.328] [DEBUG] Adjusted images value: 
 { 
  id: 980108,
  width: 2,
@@ -843,7 +843,7 @@
       [4096 23104 25] [127 70 60]
       [187 45 103] [23716 3481 53824]
 }
-[2020-11-03 13:49:51.739] [DEBUG] Final image: { 
+[2020-11-03 13:54:50.328] [DEBUG] Final image: { 
  id: 980108,
  width: 2,
  height: 2,
@@ -852,8 +852,8 @@
       [235 168 216] [45369 36481 400]
 }
 
-[2020-11-03 13:49:51.739] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:51.739] [DEBUG] Initial images value: 
+[2020-11-03 13:54:50.328] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:50.328] [DEBUG] Initial images value: 
 { 
  id: 211825,
  width: 2,
@@ -878,8 +878,8 @@
       [35 20 40] [84 149 99]
       [101 22 207] [64 134 27]
 }
-[2020-11-03 13:49:52.746] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:52.747] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:51.335] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:51.335] [DEBUG] Adjusted images value: 
 { 
  id: 211825,
  width: 2,
@@ -904,7 +904,7 @@
       [1225 400 1600] [7056 22201 9801]
       [10201 484 42849] [4096 17956 729]
 }
-[2020-11-03 13:49:52.747] [DEBUG] Final image: { 
+[2020-11-03 13:54:51.335] [DEBUG] Final image: { 
  id: 846865,
  width: 2,
  height: 2,
@@ -913,8 +913,8 @@
       [62500 5776 144] [14161 19321 57600]
 }
 
-[2020-11-03 13:49:52.747] [DEBUG] ----------------------Taking images----------------------
-[2020-11-03 13:49:52.747] [DEBUG] Initial images value: 
+[2020-11-03 13:54:51.336] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:51.336] [DEBUG] Initial images value: 
 { 
  id: 211800,
  width: 2,
@@ -939,8 +939,8 @@
       [135 131 75] [243 40 84]
       [5 136 54] [11 167 199]
 }
-[2020-11-03 13:49:53.753] [DEBUG] All images were adjusted successfully.
-[2020-11-03 13:49:53.753] [DEBUG] Adjusted images value: 
+[2020-11-03 13:54:52.342] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:52.343] [DEBUG] Adjusted images value: 
 { 
  id: 211800,
  width: 2,
@@ -965,7 +965,7 @@
       [134 130 74] [59049 1600 7056]
       [25 18496 2916] [121 27889 39601]
 }
-[2020-11-03 13:49:53.753] [DEBUG] Final image: { 
+[2020-11-03 13:54:52.343] [DEBUG] Final image: { 
  id: 211800,
  width: 2,
  height: 2,
@@ -974,4 +974,65 @@
       [8281 8649 1369] [21025 12100 31329]
 }
 
-[2020-11-03 13:49:53.753] [DEBUG] Process has received a signal and then it was terminated with status code 0
+[2020-11-03 13:54:52.343] [DEBUG] ----------------------Taking images----------------------
+[2020-11-03 13:54:52.343] [DEBUG] Initial images value: 
+{ 
+ id: 207391,
+ width: 2,
+ height: 2,
+ pixels: {
+      [133 65 99] [79 183 186]
+      [222 95 148] [255 103 29]
+}
+{ 
+ id: 281977,
+ width: 2,
+ height: 2,
+ pixels: {
+      [235 220 189] [161 22 210]
+      [218 119 144] [56 237 118]
+}
+{ 
+ id: 649039,
+ width: 2,
+ height: 2,
+ pixels: {
+      [137 108 41] [25 139 38]
+      [87 181 140] [80 234 5]
+}
+[2020-11-03 13:54:52.350] [DEBUG] All images were adjusted successfully.
+[2020-11-03 13:54:52.351] [DEBUG] Adjusted images value: 
+{ 
+ id: 207391,
+ width: 2,
+ height: 2,
+ pixels: {
+      [132 64 98] [6241 33489 34596]
+      [49284 9025 21904] [65025 10609 841]
+}
+{ 
+ id: 281977,
+ width: 2,
+ height: 2,
+ pixels: {
+      [234 219 188] [25921 484 44100]
+      [47524 14161 20736] [3136 56169 13924]
+}
+{ 
+ id: 649039,
+ width: 2,
+ height: 2,
+ pixels: {
+      [136 107 40] [625 19321 1444]
+      [7569 32761 19600] [6400 54756 25]
+}
+[2020-11-03 13:54:52.351] [DEBUG] Final image: { 
+ id: 649039,
+ width: 2,
+ height: 2,
+ pixels: {
+      [136 107 40] [625 19321 1444]
+      [7569 32761 19600] [6400 54756 25]
+}
+
+[2020-11-03 13:54:52.351] [DEBUG] Process has received a signal and then it was terminated with status code 0

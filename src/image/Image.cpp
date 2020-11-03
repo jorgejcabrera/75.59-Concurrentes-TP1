@@ -5,7 +5,6 @@
 #include "Image.h"
 #include <utility>
 #include <sstream>
-#include <vector>
 
 Image::Image(map<int, list<Pixel>> pixels, int id) {
     this->pixels = std::move(pixels);
@@ -29,13 +28,6 @@ string Image::toString() {
     }
     ss << "}" << "\n";
     return ss.str();
-}
-
-Image Image::overlap(const Image& image) {
-    if (rand() % 2 == 0) {
-        return image;
-    }
-    return *this;
 }
 
 size_t Image::getSerializedSize() {
