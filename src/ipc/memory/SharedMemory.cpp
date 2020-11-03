@@ -57,9 +57,9 @@ void SharedMemory::create(const std::string &pathName, const char word, size_t c
     }
 }
 
-SharedMemory::SharedMemory(int elements) {
+SharedMemory::SharedMemory(size_t size) {
     std::string filePath("/bin/ls");
-    this->create(filePath, 'A', sizeof(int *) * elements);
+    this->create(filePath, 'B', size);
 }
 
 int *SharedMemory::getPtrData() {
