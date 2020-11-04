@@ -64,21 +64,21 @@ void ImageQualityFixer::adjustInParallel(list<Image> images) {
 
 void ImageQualityFixer::writeInFile(string archivo, Image image) {
     FifoEscritura canalDeEscritura(archivo);
-    canalDeEscritura.abrir();
+    canalDeEscritura.start();
     int *serializedImage = new int[image.getSerializedSize() / sizeof(int)];
     ImageSerializer::serialize(image, serializedImage);
     canalDeEscritura.escribir(serializedImage, image.getSerializedSize());
-    canalDeEscritura.cerrar();
+    canalDeEscritura.finish();
     canalDeEscritura.eliminar();
 }
 
 Image ImageQualityFixer::readFromFile(string file, size_t totalSize) {
     FifoLectura canalDeLectura(file);
     int *buffer = new int[totalSize / sizeof(int)];
-    canalDeLectura.abrir();
+    canalDeLectura.start();
     canalDeLectura.leer(buffer, totalSize);
     Image anImage = ImageSerializer::hydrate(buffer);
-    canalDeLectura.cerrar();
+    canalDeLectura.finish();
     return anImage;
 }
 

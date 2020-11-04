@@ -13,7 +13,7 @@ public:
 
     ~FifoEscritura() override;
 
-    void abrir() override;
+    void start() override;
 
     ssize_t escribir(int *buffer, ssize_t buffsize) const;
 };

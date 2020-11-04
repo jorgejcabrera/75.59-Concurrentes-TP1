@@ -12,7 +12,7 @@ Fifo::Fifo(const string &nombre) : name(nombre), fd(-1) {
 
 Fifo::~Fifo() = default;
 
-void Fifo::cerrar() {
+void Fifo::finish() {
     close(fd);
     fd = -1;
 }

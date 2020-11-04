@@ -19,9 +19,9 @@ public:
 
     virtual ~Fifo();
 
-    virtual void abrir() = 0;
+    virtual void start() = 0;
 
-    void cerrar();
+    void finish();
 
     void eliminar() const;
 

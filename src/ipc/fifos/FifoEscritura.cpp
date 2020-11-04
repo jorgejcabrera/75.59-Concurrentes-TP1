@@ -11,7 +11,7 @@ FifoEscritura::FifoEscritura(const string &nombre) : Fifo(nombre) {
 
 FifoEscritura::~FifoEscritura() = default;
 
-void FifoEscritura::abrir() {
+void FifoEscritura::start() {
     fd = open(name.c_str(), O_WRONLY);
 }
 

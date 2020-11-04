@@ -12,7 +12,7 @@ FifoLectura::FifoLectura(const string nombre) : Fifo(nombre) {
 FifoLectura::~FifoLectura() {
 }
 
-void FifoLectura::abrir() {
+void FifoLectura::start() {
     fd = open(name.c_str(), O_RDONLY);
 }
 

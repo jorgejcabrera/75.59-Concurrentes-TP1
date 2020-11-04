@@ -16,7 +16,7 @@ bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration)
 int main() {
     /** Initialing parameters */
     int camerasQuantity = 2;
-    string logLevel = "INFO";
+    string logLevel = "DEBUG";
     int width = 5;
     int height = 2;
 
@@ -75,7 +75,7 @@ int main() {
 }
 
 bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration) {
-    int maxIterationQuantity = 10;
+    int maxIterationQuantity = 2;
     if (iteration >= maxIterationQuantity)
         return false;
     return sigint_handler.getGracefulQuit() == 0;

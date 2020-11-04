@@ -13,7 +13,7 @@ public:
 
     ~FifoLectura() override;
 
-    void abrir() override;
+    void start() override;
 
     ssize_t leer(int *buffer, ssize_t buffsize) const;
 };
