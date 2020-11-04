@@ -24,15 +24,15 @@ void Pixel::adjust() {
     }
 }
 
-int Pixel::getBlue() {
+int Pixel::getBlue() const {
     return this->blue;
 }
 
-int Pixel::getRed() {
+int Pixel::getRed() const {
     return this->red;
 }
 
-int Pixel::getGreen() {
+int Pixel::getGreen() const {
     return this->green;
 }
 

@@ -13,11 +13,11 @@ private:
 public:
     Pixel(int red, int blue, int green);
 
-    int getRed();
+    int getRed() const;
 
-    int getBlue();
+    int getBlue() const;
 
-    int getGreen();
+    int getGreen() const;
 
     void adjust();
 
