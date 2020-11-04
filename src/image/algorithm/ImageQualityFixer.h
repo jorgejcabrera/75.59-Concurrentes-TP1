@@ -11,9 +11,9 @@ class ImageQualityFixer {
 private:
     static void adjust(Image *image);
 
-    Image readFromFile(string file, size_t totalSize);
+    static Image readFromFile(string file, size_t totalSize);
 
-    void writeInFile(string archivo, Image image);
+    static void writeInFile(string archivo, Image image);
 
     string fileName(string prefix, int i);
 

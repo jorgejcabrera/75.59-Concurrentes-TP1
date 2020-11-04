@@ -16,7 +16,7 @@ bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration)
 int main() {
     /** Initialing parameters */
     int camerasQuantity = 2;
-    string logLevel = "DEBUG";
+    string logLevel = "INFO";
     int width = 5;
     int height = 2;
 
@@ -53,8 +53,8 @@ int main() {
         Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
 
         /** FIFO */
-        //list<Image> adjustedImages = ImageQualityFixer().adjustWithFIFO(images);
-        //Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
+        list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
+        Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
 
         /** Retrieving adjusted images */
         list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());

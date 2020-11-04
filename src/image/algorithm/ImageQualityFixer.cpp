@@ -68,8 +68,6 @@ void ImageQualityFixer::writeInFile(string archivo, Image image) {
     int *serializedImage = new int[image.getSerializedSize() / sizeof(int)];
     ImageSerializer::serialize(image, serializedImage);
     canalDeEscritura.escribir(serializedImage, image.getSerializedSize());
-    std::cout << "[Escritor] Escribi el mensaje en el fifo: " << ImageSerializer::hydrate(serializedImage).toString()
-              << std::endl;
     canalDeEscritura.cerrar();
     canalDeEscritura.eliminar();
 }
@@ -101,7 +99,6 @@ list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
         if (pid == 0) {
             string fileName = this->fileName(filePartitionPrefix, i);
             Image anImage = this->readFromFile(fileName, it->getSerializedSize());
-            cout << "[Hijo] se encontro la imagen: " << i << " " << anImage.toString() << endl;
             sleep(rand() % 2);
             exit(0);
         } else {
@@ -109,9 +106,7 @@ list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
             ss.clear();
             ss << filePartitionPrefix << i;
             writeInFile(ss.str(), it.operator*());
-
             wait(nullptr);
-            //std::cout << "[Escritor] Se escribio en it: " << i << " " << it->toString() << std::endl;
         }
     }
     return adjustedImages;
