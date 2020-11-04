@@ -15,10 +15,10 @@ bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration)
 
 int main() {
     /** Initialing parameters */
-    int camerasQuantity = 5;
+    int camerasQuantity = 2;
     string logLevel = "DEBUG";
     int width = 5;
-    int height = 2;
+    int height = 1;
 
     cout << "Process id: " << getpid() << " \n";
 
@@ -56,6 +56,13 @@ int main() {
         list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());
         Logger::getInstance(logLevel)->log("Adjusted images value: ", adjustedImages);
 
+
+        /** Final images */
+        Image finalImage = ImageQualityFixer::overlap(adjustedImages);
+        Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
+
+        memory.free();
+
         /**
          * ********************************************
          *                  FIFO
@@ -63,14 +70,9 @@ int main() {
          * */
         list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
         Logger::getInstance(logLevel)->log("All images were adjusted successfully with FIFO.");
-
-        /** Final images */
-        Image finalImage = ImageQualityFixer::overlap(adjustedImages);
-        Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
         Image finalImageWithFIFO = ImageQualityFixer::overlap(adjustedImagesWithFIFO);
         Logger::getInstance(logLevel)->log("Final image retrieved by FIFO: " + finalImageWithFIFO.toString());
 
-        memory.free();
     }
 
     /** Signal was received and the main process must be closed */

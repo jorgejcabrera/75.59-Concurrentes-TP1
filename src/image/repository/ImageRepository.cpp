@@ -47,7 +47,7 @@ list<Image> ImageRepository::findAll(int totalImages, int *ptr) const {
     return images;
 }
 
-string ImageRepository::partitionKey(int i) {
+string ImageRepository::getPartitionKey(int i) {
     string filePartitionPrefix = "/tmp/file_";
     stringstream ss;
     ss.clear();
@@ -62,8 +62,9 @@ string ImageRepository::partitionKey(int i) {
  * ******************************************************
  * ******************************************************
  * */
-Image ImageRepository::findByPartition(int partition, size_t totalSize) {
-    FifoReader readerChannel(ImageRepository::partitionKey(partition));
+
+Image ImageRepository::findByPartition(string partition, size_t totalSize) {
+    FifoReader readerChannel(partition);
     int *buffer = new int[totalSize / sizeof(int)];
     readerChannel.start();
     readerChannel.pop(buffer, totalSize);
@@ -73,8 +74,8 @@ Image ImageRepository::findByPartition(int partition, size_t totalSize) {
     return anImage;
 }
 
-void ImageRepository::saveToPartition(int partition, Image image) {
-    FifoWriter writerChannel(ImageRepository::partitionKey(partition));
+void ImageRepository::saveToPartition(string partition, Image image) {
+    FifoWriter writerChannel(partition);
     writerChannel.start();
     int *serializedImage = new int[image.getSerializedSize() / sizeof(int)];
     ImageSerializer::serialize(image, serializedImage);

@@ -11,8 +11,6 @@ class ImageRepository {
 private:
     size_t sizeOfElement{};
 
-    static string partitionKey(int i);
-
 public:
     ImageRepository();
 
@@ -26,9 +24,11 @@ public:
 
     list<Image> findAll(int totalImages, int *ptr) const;
 
-    static Image findByPartition(int partition, size_t totalSize);
+    static Image findByPartition(string partition, size_t totalSize);
 
-    static void saveToPartition(int partition, Image image);
+    static void saveToPartition(string partition, Image image);
+
+    static string getPartitionKey(int i);
 
     virtual ~ImageRepository();
 };

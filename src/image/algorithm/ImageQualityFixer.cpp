@@ -46,6 +46,7 @@ void ImageQualityFixer::adjustInParallel(list<Image> images) {
                 this->adjust(&image);
                 imageRepository.saveInPosition(image, i, memory1.getPtrData());
                 sleep(rand() % 2);
+                memory1.free();
                 exit(0);
             } catch (std::string &errormessage) {
                 std::cerr << errormessage << std::endl;
@@ -63,15 +64,16 @@ list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
     list<Image> adjustedImages;
     for (auto it = images.begin(); it != images.end(); it++) {
         int i = std::distance(images.begin(), it);
+        string partitionKey = ImageRepository::getPartitionKey(i);
         pid_t pid = fork();
         if (pid == 0) {
-            Image anImage = ImageRepository::findByPartition(i, it->getSerializedSize());
-            ImageRepository::saveToPartition(i * 10000, anImage);
+            Image anImage = ImageRepository::findByPartition(partitionKey, it->getSerializedSize());
+            ImageRepository::saveToPartition(partitionKey + "_adjust", anImage);
             sleep(rand() % 2);
             exit(0);
         } else {
-            ImageRepository::saveToPartition(i, it.operator*());
-            Image anImage = ImageRepository::findByPartition(i * 10000, it->getSerializedSize());
+            ImageRepository::saveToPartition(partitionKey, it.operator*());
+            Image anImage = ImageRepository::findByPartition(partitionKey + "_adjust", it->getSerializedSize());
             adjustedImages.push_front(anImage);
             wait(nullptr);
             //cout << "El padre recicio la imagen" << anImage.toString();
