@@ -18,10 +18,21 @@ void destroyAllElements(list<Image> &images, SharedMemory &memory, ImageReposito
 
 int main() {
     /** Initialing parameters */
-    int camerasQuantity = 3;
+    int camerasQuantity = 2;
+    cout << "Please enter cameras quantity : ";
+    cin >> camerasQuantity;
+
     string logLevel = "DEBUG";
-    int width = 5;
-    int height = 5;
+    cout << "Please enter log level : [DEBUG|INFO] ";
+    cin >> logLevel;
+
+    int width = 3;
+    cout << "Please enter width : ";
+    cin >> width;
+
+    int height = 3;
+    cout << "Please enter height : ";
+    cin >> width;
 
     cout << "Process id: " << getpid() << " \n";
 
