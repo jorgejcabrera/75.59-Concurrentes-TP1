@@ -9,7 +9,7 @@
 
 class ImageRepository {
 private:
-    size_t sizeOfElement;
+    size_t sizeOfElement{};
 
     static string partitionKey(int i);
 
