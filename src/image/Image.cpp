@@ -48,4 +48,11 @@ int Image::getId() const {
 
 Image::Image() = default;
 
-Image::~Image() = default;
+Image::~Image() {
+    for (auto &pixel : this->pixels) {
+        for (auto itRow = pixel.second.begin(); itRow != pixel.second.end(); itRow++) {
+            itRow.operator*().~Pixel();
+        }
+    }
+    this->pixels.clear();
+}

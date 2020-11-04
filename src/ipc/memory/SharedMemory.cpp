@@ -66,11 +66,19 @@ int *SharedMemory::getPtrData() {
     return this->ptrData;
 }
 
-void SharedMemory::free() {
+void SharedMemory::free(bool force) {
     // detach del bloque de memoria
     shmdt(static_cast<void *> (this->ptrData));
-    shmctl(this->shmId, IPC_RMID, nullptr);
 
+    if (this->pendingProcess() == 0 || force) {
+        shmctl(this->shmId, IPC_RMID, nullptr);
+    }
+}
+
+int SharedMemory::pendingProcess() const {
+    shmid_ds state{};
+    shmctl(this->shmId, IPC_STAT, &state);
+    return state.shm_nattch;
 }
 
 SharedMemory::SharedMemory() = default;

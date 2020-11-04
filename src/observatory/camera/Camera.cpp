@@ -9,7 +9,10 @@ Camera::Camera(Resolution resolution) {
     this->imageBuilder = ImageBuilder();
 }
 
-Camera::~Camera() = default;
+Camera::~Camera() {
+    this->resolution.~Resolution();
+    this->imageBuilder.~ImageBuilder();
+}
 
 Image Camera::shot() {
     return this->imageBuilder

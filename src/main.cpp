@@ -13,12 +13,15 @@ size_t sizeRequired(list<Image> &images);
 
 bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration);
 
+void destroyAllElements(list<Image> &images, SharedMemory &memory, ImageRepository &imageRepository,
+                        ImageQualityFixer &fixer, list<Image> &adjustedImages);
+
 int main() {
     /** Initialing parameters */
-    int camerasQuantity = 2;
+    int camerasQuantity = 3;
     string logLevel = "DEBUG";
     int width = 5;
-    int height = 1;
+    int height = 5;
 
     cout << "Process id: " << getpid() << " \n";
 
@@ -34,56 +37,79 @@ int main() {
 
     int iteration = 0;
     while (shouldItTakeMoreImages(sigint_handler, iteration)) {
-        iteration++;
-        Logger::getInstance(logLevel)->log("----------------------Taking images----------------------");
+        try {
+            iteration++;
+            Logger::getInstance(logLevel)->log("----------------------Taking images----------------------");
 
-        /** Taking some images */
-        list<Image> images = observatory.takeImagesCapture();
-        Logger::getInstance(logLevel)->log("Initial images value: ", images);
+            /** Taking some images */
+            list<Image> images = observatory.takeImagesCapture();
+            Logger::getInstance(logLevel)->log("Initial images value: ", images);
 
-        /** Creating a Shared Memory Buck */
-        SharedMemory memory = SharedMemory(sizeRequired(images));
-        ImageRepository imageRepository = ImageRepository(sizeOfElement(images));
+            /** Creating a Shared Memory Buck */
+            SharedMemory memory = SharedMemory(sizeRequired(images));
+            ImageRepository imageRepository = ImageRepository(sizeOfElement(images));
 
-        /** Saving all images */
-        ImageRepository::saveAll(images, memory.getPtrData());
+            /** Saving all images */
+            ImageRepository::saveAll(images, memory.getPtrData());
 
-        /** Parallel process */
-        ImageQualityFixer().adjustInParallel(images);
-        Logger::getInstance(logLevel)->log("All images were adjusted successfully with shared memory.");
+            /** Parallel process */
+            ImageQualityFixer fixer = ImageQualityFixer();
+            fixer.adjustInParallel(images);
+            Logger::getInstance(logLevel)->log("All images were adjusted successfully with shared memory.");
 
-        /** Retrieving adjusted images */
-        list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());
-        Logger::getInstance(logLevel)->log("Adjusted images value: ", adjustedImages);
+            /** Retrieving adjusted images */
+            list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());
+            Logger::getInstance(logLevel)->log("Adjusted images value: ", adjustedImages);
 
+            /** Final images */
+            Image finalImage = ImageQualityFixer::overlap(adjustedImages);
+            Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
 
-        /** Final images */
-        Image finalImage = ImageQualityFixer::overlap(adjustedImages);
-        Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
-
-        memory.free();
-
-        /**
-         * ********************************************
-         *                  FIFO
-         * ********************************************
-         * */
-        list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
-        Logger::getInstance(logLevel)->log("All images were adjusted successfully with FIFO.");
-        Image finalImageWithFIFO = ImageQualityFixer::overlap(adjustedImagesWithFIFO);
-        Logger::getInstance(logLevel)->log("Final image retrieved by FIFO: " + finalImageWithFIFO.toString());
-
+            /**
+             * ********************************************
+             *                  FIFO
+             * ********************************************
+             * */
+            /* *
+             * list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
+             * Logger::getInstance(logLevel)->log("All images were adjusted successfully with FIFO.");
+             * Image finalImageWithFIFO = ImageQualityFixer::overlap(adjustedImagesWithFIFO);
+             * Logger::getInstance(logLevel)->log("Final image retrieved by FIFO: " + finalImageWithFIFO.toString());
+                * */
+            destroyAllElements(images, memory, imageRepository, fixer, adjustedImages);
+        } catch (std::string &errormessage) {
+            std::cout << errormessage << std::endl;
+        }
     }
 
     /** Signal was received and the main process must be closed */
     SignalHandler::destroy();
+    observatory.~Observatory();
     Logger::getInstance(logLevel)->log(
             "Process has received a signal or it has reached the maximum of iterations, and then it was finished with status code 0.");
+    Logger::getInstance(logLevel)->~Logger();
     return 0;
 }
 
+
+void destroyAllElements(list<Image> &images, SharedMemory &memory, ImageRepository &imageRepository,
+                        ImageQualityFixer &fixer, list<Image> &adjustedImages) {
+    memory.free(true);
+    memory.~SharedMemory();
+    imageRepository.~ImageRepository();
+    fixer.~ImageQualityFixer();
+    for (auto it = adjustedImages.begin(); it != adjustedImages.end(); it++) {
+        it.operator*().~Image();
+    }
+    adjustedImages.clear();
+    for (auto it = images.begin(); it != images.end(); it++) {
+        it.operator*().~Image();
+    }
+    images.clear();
+}
+
 bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration) {
-    int maxIterationQuantity = 1;
+    int maxIterationQuantity = 5;
     if (iteration >= maxIterationQuantity)
         return false;
     return sigint_handler.getGracefulQuit() == 0;

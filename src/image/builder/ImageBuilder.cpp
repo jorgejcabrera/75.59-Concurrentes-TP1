@@ -26,4 +26,6 @@ ImageBuilder ImageBuilder::withResolution(Resolution resolution) {
 
 ImageBuilder::ImageBuilder() = default;
 
-ImageBuilder::~ImageBuilder() = default;
+ImageBuilder::~ImageBuilder() {
+    this->resolution.~Resolution();
+}

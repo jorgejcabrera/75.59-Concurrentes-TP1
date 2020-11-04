@@ -18,4 +18,9 @@ list<Image> Observatory::takeImagesCapture() {
 
 Observatory::Observatory() = default;
 
-Observatory::~Observatory() = default;
+Observatory::~Observatory() {
+    for (auto it = this->cameras.end(); it != this->cameras.end(); it++) {
+        it.operator*().~Camera();
+    }
+    this->cameras.clear();
+}

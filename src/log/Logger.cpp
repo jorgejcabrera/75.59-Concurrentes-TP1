@@ -30,8 +30,12 @@ string getTimestamp() {
 
 Logger *Logger::instance = nullptr;
 
-Logger::~Logger() {
+void Logger::destroy() {
     this->file.close();
+    if (instance != nullptr) {
+        delete (instance);
+        instance = nullptr;
+    }
 }
 
 Logger::Logger(std::string level) {

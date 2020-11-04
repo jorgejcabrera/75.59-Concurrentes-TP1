@@ -17,6 +17,8 @@ private:
 
     void create(const std::string &pathName, char word, size_t capacity);
 
+    int pendingProcess() const;
+
 public:
     SharedMemory();
 
@@ -24,7 +26,7 @@ public:
 
     int *getPtrData();
 
-    void free();
+    void free(bool force);
 
     virtual ~SharedMemory();
 };

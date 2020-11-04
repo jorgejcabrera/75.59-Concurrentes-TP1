@@ -25,7 +25,7 @@ public:
 
     void log(const std::string &message);
 
-    virtual ~Logger();
+    void destroy();
 
     static string toString(const list<Image> &list);
 };
