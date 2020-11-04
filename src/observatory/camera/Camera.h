@@ -13,7 +13,7 @@ private:
     ImageBuilder imageBuilder;
     Resolution resolution;
 public:
-    Camera(Resolution resolution);
+    explicit Camera(Resolution resolution);
 
     Image shot();
 

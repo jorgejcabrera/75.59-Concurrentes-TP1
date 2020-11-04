@@ -23,7 +23,7 @@ Image ImageRepository::findByPosition(int position, int *ptr) const {
     return ImageSerializer::hydrate(localPtr);
 }
 
-void ImageRepository::saveAtPosition(const Image &image, int position, int *ptr) const {
+void ImageRepository::saveInPosition(const Image &image, int position, int *ptr) const {
     int *localPtr = ptr + this->sizeOfElement * position;
     ImageSerializer::serialize(image, localPtr);
 }

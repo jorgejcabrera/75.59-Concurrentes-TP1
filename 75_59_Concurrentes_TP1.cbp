@@ -78,10 +78,10 @@
 		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/Pixel.h">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>
-		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/algorithm/ImageQualityFix.cpp">
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/algorithm/ImageQualityFixer.cpp">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>
-		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/algorithm/ImageQualityFix.h">
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/algorithm/ImageQualityFixer.h">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>
 		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/builder/ImageBuilder.cpp">
