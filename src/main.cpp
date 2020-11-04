@@ -15,8 +15,8 @@ bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration)
 
 int main() {
     /** Initialing parameters */
-    int camerasQuantity = 1;
-    string logLevel = "WARN";
+    int camerasQuantity = 5;
+    string logLevel = "DEBUG";
     int width = 5;
     int height = 2;
 
@@ -52,17 +52,23 @@ int main() {
         ImageQualityFixer().adjustInParallel(images);
         Logger::getInstance(logLevel)->log("All images were adjusted successfully with shared memory.");
 
-        /** FIFO */
-        list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
-        Logger::getInstance(logLevel)->log("All images were adjusted successfully with FIFO.");
-
         /** Retrieving adjusted images */
         list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());
         Logger::getInstance(logLevel)->log("Adjusted images value: ", adjustedImages);
 
-        /** Final image */
+        /**
+         * ********************************************
+         *                  FIFO
+         * ********************************************
+         * */
+        list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
+        Logger::getInstance(logLevel)->log("All images were adjusted successfully with FIFO.");
+
+        /** Final images */
         Image finalImage = ImageQualityFixer::overlap(adjustedImages);
         Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
+        Image finalImageWithFIFO = ImageQualityFixer::overlap(adjustedImagesWithFIFO);
+        Logger::getInstance(logLevel)->log("Final image retrieved by FIFO: " + finalImageWithFIFO.toString());
 
         memory.free();
     }

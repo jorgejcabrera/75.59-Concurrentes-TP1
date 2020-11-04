@@ -66,14 +66,18 @@ list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
         pid_t pid = fork();
         if (pid == 0) {
             Image anImage = ImageRepository::findByPartition(i, it->getSerializedSize());
-            adjustedImages.push_back(anImage);
+            ImageRepository::saveToPartition(i * 10000, anImage);
             sleep(rand() % 2);
             exit(0);
         } else {
             ImageRepository::saveToPartition(i, it.operator*());
+            Image anImage = ImageRepository::findByPartition(i * 10000, it->getSerializedSize());
+            adjustedImages.push_front(anImage);
             wait(nullptr);
+            //cout << "El padre recicio la imagen" << anImage.toString();
         }
     }
+
     return adjustedImages;
 }
 
