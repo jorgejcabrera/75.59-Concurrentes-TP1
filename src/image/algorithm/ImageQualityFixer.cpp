@@ -62,31 +62,32 @@ void ImageQualityFixer::adjustInParallel(list<Image> images) {
     }
 }
 
-void ImageQualityFixer::writeInFile(string archivo, Image image) {
-    FifoWriter canalDeEscritura(archivo);
-    canalDeEscritura.start();
+void ImageQualityFixer::writeInFile(string file, Image image) {
+    FifoWriter writerChannel(file);
+    writerChannel.start();
     int *serializedImage = new int[image.getSerializedSize() / sizeof(int)];
     ImageSerializer::serialize(image, serializedImage);
-    canalDeEscritura.push(serializedImage, image.getSerializedSize());
-    canalDeEscritura.finish();
-    canalDeEscritura.destroy();
+    writerChannel.push(serializedImage, image.getSerializedSize());
+    writerChannel.finish();
+    writerChannel.destroy();
 }
 
 Image ImageQualityFixer::readFromFile(string file, size_t totalSize) {
-    FifoReader canalDeLectura(file);
+    FifoReader readerChannel(file);
     int *buffer = new int[totalSize / sizeof(int)];
-    canalDeLectura.start();
-    canalDeLectura.pop(buffer, totalSize);
+    readerChannel.start();
+    readerChannel.pop(buffer, totalSize);
     Image anImage = ImageSerializer::hydrate(buffer);
-    canalDeLectura.finish();
+    readerChannel.finish();
     return anImage;
 }
 
 
-string ImageQualityFixer::fileName(string prefix, int i) {
+string ImageQualityFixer::fileName(int i) {
+    string filePartitionPrefix = "/tmp/file_";
     stringstream ss;
     ss.clear();
-    ss << prefix << i;
+    ss << filePartitionPrefix << i;
     return ss.str();
 }
 
@@ -94,18 +95,16 @@ list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
     list<Image> adjustedImages;
     for (auto it = images.begin(); it != images.end(); it++) {
         int i = std::distance(images.begin(), it);
-        string filePartitionPrefix = "/tmp/file_";
         pid_t pid = fork();
         if (pid == 0) {
-            string fileName = this->fileName(filePartitionPrefix, i);
+            string fileName = this->fileName(i);
             Image anImage = this->readFromFile(fileName, it->getSerializedSize());
+            adjustedImages.push_back(anImage);
             sleep(rand() % 2);
             exit(0);
         } else {
-            stringstream ss;
-            ss.clear();
-            ss << filePartitionPrefix << i;
-            writeInFile(ss.str(), it.operator*());
+            string fileName = this->fileName(i);
+            writeInFile(fileName, it.operator*());
             wait(nullptr);
         }
     }

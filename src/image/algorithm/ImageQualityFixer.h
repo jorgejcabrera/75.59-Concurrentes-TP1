@@ -13,9 +13,9 @@ private:
 
     static Image readFromFile(string file, size_t totalSize);
 
-    static void writeInFile(string archivo, Image image);
+    static void writeInFile(string file, Image image);
 
-    string fileName(string prefix, int i);
+    string fileName(int i);
 
 public:
     ImageQualityFixer();

@@ -15,8 +15,8 @@ bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration)
 
 int main() {
     /** Initialing parameters */
-    int camerasQuantity = 2;
-    string logLevel = "DEBUG";
+    int camerasQuantity = 5;
+    string logLevel = "WARN";
     int width = 5;
     int height = 2;
 
