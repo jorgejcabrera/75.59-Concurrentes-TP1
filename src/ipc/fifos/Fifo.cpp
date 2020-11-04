@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Fifo::Fifo(const string &nombre) : nombre(nombre), fd(-1) {
+Fifo::Fifo(const string &nombre) : name(nombre), fd(-1) {
     mknod(static_cast<const char *>(nombre.c_str()), S_IFIFO | 0666, 0);
 }
 
@@ -18,5 +18,5 @@ void Fifo::cerrar() {
 }
 
 void Fifo::eliminar() const {
-    unlink(nombre.c_str());
+    unlink(name.c_str());
 }

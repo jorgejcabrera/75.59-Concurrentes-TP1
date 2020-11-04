@@ -26,7 +26,7 @@ public:
     void eliminar() const;
 
 protected:
-    string nombre;
+    string name;
     int fd;
 };
 

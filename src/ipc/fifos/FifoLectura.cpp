@@ -13,7 +13,7 @@ FifoLectura::~FifoLectura() {
 }
 
 void FifoLectura::abrir() {
-    fd = open(nombre.c_str(), O_RDONLY);
+    fd = open(name.c_str(), O_RDONLY);
 }
 
 ssize_t FifoLectura::leer(int *buffer, const ssize_t buffsize) const {

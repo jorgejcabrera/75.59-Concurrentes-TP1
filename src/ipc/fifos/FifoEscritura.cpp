@@ -12,7 +12,7 @@ FifoEscritura::FifoEscritura(const string &nombre) : Fifo(nombre) {
 FifoEscritura::~FifoEscritura() = default;
 
 void FifoEscritura::abrir() {
-    fd = open(nombre.c_str(), O_WRONLY);
+    fd = open(name.c_str(), O_WRONLY);
 }
 
 ssize_t FifoEscritura::escribir(int *buffer, const ssize_t buffsize) const {
