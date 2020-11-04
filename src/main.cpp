@@ -15,9 +15,9 @@ bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration)
 
 int main() {
     /** Initialing parameters */
-    int camerasQuantity = 3;
+    int camerasQuantity = 2;
     string logLevel = "DEBUG";
-    int width = 3;
+    int width = 5;
     int height = 2;
 
     cout << "Process id: " << getpid() << " \n";
@@ -52,6 +52,10 @@ int main() {
         ImageQualityFixer().adjustInParallel(images);
         Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
 
+        /** FIFO */
+        //list<Image> adjustedImages = ImageQualityFixer().adjustWithFIFO(images);
+        //Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
+
         /** Retrieving adjusted images */
         list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());
         Logger::getInstance(logLevel)->log("Adjusted images value: ", adjustedImages);
@@ -65,13 +69,14 @@ int main() {
 
     /** Signal was received and the main process must be closed */
     SignalHandler::destroy();
-    Logger::getInstance(logLevel)->log("Process has received a signal or it has reached the maximum of iterations, and then it was finished with status code 0.");
+    Logger::getInstance(logLevel)->log(
+            "Process has received a signal or it has reached the maximum of iterations, and then it was finished with status code 0.");
     return 0;
 }
 
 bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration) {
-    int maxIterationQuantity = 100;
-    if (iteration > maxIterationQuantity)
+    int maxIterationQuantity = 10;
+    if (iteration >= maxIterationQuantity)
         return false;
     return sigint_handler.getGracefulQuit() == 0;
 }

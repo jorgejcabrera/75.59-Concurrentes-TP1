@@ -31,7 +31,7 @@ string Image::toString() {
 }
 
 size_t Image::getSerializedSize() {
-    return this->getPixels()->size() * this->getPixels()->begin()->second.size() * sizeof(int) + 3 * sizeof(int);
+    return this->getPixels()->size() * this->getPixels()->begin()->second.size() * sizeof(int) * 3 + 3 * sizeof(int);
 }
 
 void Image::setPixels(map<int, list<Pixel>> pixels) {

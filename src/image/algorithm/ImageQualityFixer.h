@@ -11,10 +11,18 @@ class ImageQualityFixer {
 private:
     static void adjust(Image *image);
 
+    Image readFromFile(string file, size_t totalSize);
+
+    void writeInFile(string archivo, Image image);
+
+    string fileName(string prefix, int i);
+
 public:
     ImageQualityFixer();
 
     void adjustInParallel(list<Image> images);
+
+    list<Image> adjustWithFIFO(list<Image> images);
 
     static Image overlap(list<Image> images);
 
