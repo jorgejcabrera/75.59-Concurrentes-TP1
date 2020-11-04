@@ -7,10 +7,6 @@
 #include "ImageQualityFixer.h"
 #include "../../ipc/memory/SharedMemory.h"
 #include "../repository/ImageRepository.h"
-#include "../../ipc/fifos/FifoWriter.h"
-#include "../../ipc/fifos/FifoReader.h"
-#include "../repository/ImageSerializer.h"
-#include <sstream>
 
 ImageQualityFixer::ImageQualityFixer() = default;
 
@@ -62,34 +58,6 @@ void ImageQualityFixer::adjustInParallel(list<Image> images) {
     }
 }
 
-void ImageQualityFixer::writeInFile(string file, Image image) {
-    FifoWriter writerChannel(file);
-    writerChannel.start();
-    int *serializedImage = new int[image.getSerializedSize() / sizeof(int)];
-    ImageSerializer::serialize(image, serializedImage);
-    writerChannel.push(serializedImage, image.getSerializedSize());
-    writerChannel.finish();
-    writerChannel.destroy();
-}
-
-Image ImageQualityFixer::readFromFile(string file, size_t totalSize) {
-    FifoReader readerChannel(file);
-    int *buffer = new int[totalSize / sizeof(int)];
-    readerChannel.start();
-    readerChannel.pop(buffer, totalSize);
-    Image anImage = ImageSerializer::hydrate(buffer);
-    readerChannel.finish();
-    return anImage;
-}
-
-
-string ImageQualityFixer::fileName(int i) {
-    string filePartitionPrefix = "/tmp/file_";
-    stringstream ss;
-    ss.clear();
-    ss << filePartitionPrefix << i;
-    return ss.str();
-}
 
 list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
     list<Image> adjustedImages;
@@ -97,14 +65,12 @@ list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
         int i = std::distance(images.begin(), it);
         pid_t pid = fork();
         if (pid == 0) {
-            string fileName = this->fileName(i);
-            Image anImage = this->readFromFile(fileName, it->getSerializedSize());
+            Image anImage = ImageRepository::findByPartition(i, it->getSerializedSize());
             adjustedImages.push_back(anImage);
             sleep(rand() % 2);
             exit(0);
         } else {
-            string fileName = this->fileName(i);
-            writeInFile(fileName, it.operator*());
+            ImageRepository::saveToPartition(i, it.operator*());
             wait(nullptr);
         }
     }

@@ -15,7 +15,7 @@ bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration)
 
 int main() {
     /** Initialing parameters */
-    int camerasQuantity = 5;
+    int camerasQuantity = 1;
     string logLevel = "WARN";
     int width = 5;
     int height = 2;
@@ -50,11 +50,11 @@ int main() {
 
         /** Parallel process */
         ImageQualityFixer().adjustInParallel(images);
-        Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
+        Logger::getInstance(logLevel)->log("All images were adjusted successfully with shared memory.");
 
         /** FIFO */
         list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
-        Logger::getInstance(logLevel)->log("All images were adjusted successfully.");
+        Logger::getInstance(logLevel)->log("All images were adjusted successfully with FIFO.");
 
         /** Retrieving adjusted images */
         list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());
@@ -75,13 +75,15 @@ int main() {
 }
 
 bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration) {
-    int maxIterationQuantity = 2;
+    int maxIterationQuantity = 1;
     if (iteration >= maxIterationQuantity)
         return false;
     return sigint_handler.getGracefulQuit() == 0;
 }
 
-size_t sizeOfElement(list<Image> &images) { return images.begin()->getSerializedSize(); }
+size_t sizeOfElement(list<Image> &images) {
+    return images.begin()->getSerializedSize();
+}
 
 size_t sizeRequired(list<Image> &images) {
     return images.size() * sizeOfElement(images);
