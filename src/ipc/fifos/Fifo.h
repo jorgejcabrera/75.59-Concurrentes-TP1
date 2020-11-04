@@ -23,7 +23,7 @@ public:
 
     void finish();
 
-    void eliminar() const;
+    void destroy() const;
 
 protected:
     string name;

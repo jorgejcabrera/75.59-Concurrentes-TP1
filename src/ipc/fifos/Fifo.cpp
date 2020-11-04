@@ -17,6 +17,6 @@ void Fifo::finish() {
     fd = -1;
 }
 
-void Fifo::eliminar() const {
+void Fifo::destroy() const {
     unlink(name.c_str());
 }

@@ -108,16 +108,16 @@
 		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/Fifo.h">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>
-		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoEscritura.cpp">
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoReader.cpp">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>
-		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoEscritura.h">
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoReader.h">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>
-		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoLectura.cpp">
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoWriter.cpp">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>
-		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoLectura.h">
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/FifoWriter.h">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>
 		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/memory/SharedMemory.cpp">

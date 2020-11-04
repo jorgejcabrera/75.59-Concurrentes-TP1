@@ -7,8 +7,8 @@
 #include "ImageQualityFixer.h"
 #include "../../ipc/memory/SharedMemory.h"
 #include "../repository/ImageRepository.h"
-#include "../../ipc/fifos/FifoEscritura.h"
-#include "../../ipc/fifos/FifoLectura.h"
+#include "../../ipc/fifos/FifoWriter.h"
+#include "../../ipc/fifos/FifoReader.h"
 #include "../repository/ImageSerializer.h"
 #include <sstream>
 
@@ -63,20 +63,20 @@ void ImageQualityFixer::adjustInParallel(list<Image> images) {
 }
 
 void ImageQualityFixer::writeInFile(string archivo, Image image) {
-    FifoEscritura canalDeEscritura(archivo);
+    FifoWriter canalDeEscritura(archivo);
     canalDeEscritura.start();
     int *serializedImage = new int[image.getSerializedSize() / sizeof(int)];
     ImageSerializer::serialize(image, serializedImage);
-    canalDeEscritura.escribir(serializedImage, image.getSerializedSize());
+    canalDeEscritura.push(serializedImage, image.getSerializedSize());
     canalDeEscritura.finish();
-    canalDeEscritura.eliminar();
+    canalDeEscritura.destroy();
 }
 
 Image ImageQualityFixer::readFromFile(string file, size_t totalSize) {
-    FifoLectura canalDeLectura(file);
+    FifoReader canalDeLectura(file);
     int *buffer = new int[totalSize / sizeof(int)];
     canalDeLectura.start();
-    canalDeLectura.leer(buffer, totalSize);
+    canalDeLectura.pop(buffer, totalSize);
     Image anImage = ImageSerializer::hydrate(buffer);
     canalDeLectura.finish();
     return anImage;
