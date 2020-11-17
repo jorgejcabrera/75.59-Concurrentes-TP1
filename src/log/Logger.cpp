@@ -64,7 +64,7 @@ void Logger::log(const std::string &message, const std::list<Image> &images) {
 }
 
 void Logger::log(const std::string &message) {
-    this->file.open("/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/log.txt", ios::app);
+    this->file.open("./log.txt", ios::app);
     if (!this->file.is_open()) {
         cerr << "It was an error when open log file.\n";
     }
