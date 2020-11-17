@@ -1,3 +1,4 @@
+log*
 .idea
 *debug*
 CMakeFiles*
@@ -5,3 +6,4 @@ CMakeCache.txt
 75_59_Concurrentes_TP1
 cmake_install.cmake
 Makefile
+.DS_Store

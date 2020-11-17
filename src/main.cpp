@@ -32,7 +32,11 @@ int main() {
 
     int height = 3;
     cout << "Please enter height : ";
-    cin >> width;
+    cin >> height;
+
+    string method = "SHARED_MEMORY";
+    cout << "Please enter the method : [SHARED_MEMORY|FIFO]";
+    cin >> method;
 
     cout << "Process id: " << getpid() << " \n";
 
@@ -55,39 +59,37 @@ int main() {
             /** Taking some images */
             list<Image> images = observatory.takeImagesCapture();
             Logger::getInstance(logLevel)->log("Initial images value: ", images);
+            if (method == "FIFO") {
+                Logger::getInstance(logLevel)->log("Using FIFO method");
+                list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
+                Logger::getInstance(logLevel)->log("All images were adjusted successfully with FIFO.");
+                Image finalImageWithFIFO = ImageQualityFixer::overlap(adjustedImagesWithFIFO);
+                Logger::getInstance(logLevel)->log("Final image retrieved by FIFO: " + finalImageWithFIFO.toString());
+            } else {
+                Logger::getInstance(logLevel)->log("Using SHARED_MEMORY method");
 
-            /** Creating a Shared Memory Buck */
-            SharedMemory memory = SharedMemory(sizeRequired(images));
-            ImageRepository imageRepository = ImageRepository(sizeOfElement(images));
+                /** Creating a Shared Memory Buck */
+                SharedMemory memory = SharedMemory(sizeRequired(images));
+                ImageRepository imageRepository = ImageRepository(sizeOfElement(images));
 
-            /** Saving all images */
-            ImageRepository::saveAll(images, memory.getPtrData());
+                /** Saving all images */
+                ImageRepository::saveAll(images, memory.getPtrData());
 
-            /** Parallel process */
-            ImageQualityFixer fixer = ImageQualityFixer();
-            fixer.adjustInParallel(images);
-            Logger::getInstance(logLevel)->log("All images were adjusted successfully with shared memory.");
+                /** Parallel process */
+                ImageQualityFixer fixer = ImageQualityFixer();
+                fixer.adjustInParallel(images);
+                Logger::getInstance(logLevel)->log("All images were adjusted successfully with shared memory.");
 
-            /** Retrieving adjusted images */
-            list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());
-            Logger::getInstance(logLevel)->log("Adjusted images value: ", adjustedImages);
+                /** Retrieving adjusted images */
+                list<Image> adjustedImages = imageRepository.findAll(images.size(), memory.getPtrData());
+                Logger::getInstance(logLevel)->log("Adjusted images value: ", adjustedImages);
 
-            /** Final images */
-            Image finalImage = ImageQualityFixer::overlap(adjustedImages);
-            Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
+                /** Final images */
+                Image finalImage = ImageQualityFixer::overlap(adjustedImages);
+                Logger::getInstance(logLevel)->log("Final image: " + finalImage.toString());
 
-            /**
-             * ********************************************
-             *                  FIFO
-             * ********************************************
-             * */
-            /* *
-             * list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
-             * Logger::getInstance(logLevel)->log("All images were adjusted successfully with FIFO.");
-             * Image finalImageWithFIFO = ImageQualityFixer::overlap(adjustedImagesWithFIFO);
-             * Logger::getInstance(logLevel)->log("Final image retrieved by FIFO: " + finalImageWithFIFO.toString());
-                * */
-            destroyAllElements(images, memory, imageRepository, fixer, adjustedImages);
+                destroyAllElements(images, memory, imageRepository, fixer, adjustedImages);
+            }
         } catch (std::string &errormessage) {
             std::cout << errormessage << std::endl;
         }

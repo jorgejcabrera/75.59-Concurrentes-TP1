@@ -11,7 +11,8 @@
 /**
  * ******************************************************
  * ******************************************************
- * Following methods were implemented through shared memory.
+ * Following methods were implemented with a pointer
+ * created by shared memory.
  * ******************************************************
  * ******************************************************
  * */
