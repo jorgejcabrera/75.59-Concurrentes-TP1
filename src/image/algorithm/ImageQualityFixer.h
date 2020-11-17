@@ -11,7 +11,7 @@ class ImageQualityFixer {
 private:
     static void adjust(Image *image);
 
-    static list<Image> readAdjustedImages(list<Image> &images,);
+    static list<Image> readAdjustedImages(list<Image> &images);
 
 public:
     ImageQualityFixer();
