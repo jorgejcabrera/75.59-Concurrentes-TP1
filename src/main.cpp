@@ -6,10 +6,9 @@
 #include "log/Logger.h"
 #include "signal/SIGINT_Handler.h"
 #include "signal/SignalHandler.h"
+#include "image/service/ImageService.h"
 
 size_t sizeOfElement(list<Image> &images);
-
-size_t sizeRequired(list<Image> &images);
 
 bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration);
 
@@ -35,7 +34,7 @@ int main() {
     cin >> height;
 
     string method = "SHARED_MEMORY";
-    cout << "Please enter the method : [SHARED_MEMORY|FIFO]";
+    cout << "Please enter the method : [SM|FIFO] ";
     cin >> method;
 
     cout << "Process id: " << getpid() << " \n";
@@ -69,11 +68,12 @@ int main() {
                 /** Final images */
                 Image finalImageWithFIFO = ImageQualityFixer::overlap(adjustedImagesWithFIFO);
                 Logger::getInstance(logLevel)->log("Final image retrieved by FIFO: " + finalImageWithFIFO.toString());
+
             } else {
                 Logger::getInstance(logLevel)->log("Using SHARED_MEMORY method");
 
                 /** Creating a Shared Memory Buck */
-                SharedMemory memory = SharedMemory(sizeRequired(images));
+                SharedMemory memory = SharedMemory(ImageService::serializedSize(images));
                 ImageRepository imageRepository = ImageRepository(sizeOfElement(images));
 
                 /** Saving all images */
@@ -134,8 +134,4 @@ bool shouldItTakeMoreImages(const SIGINT_Handler &sigint_handler, int iteration)
 
 size_t sizeOfElement(list<Image> &images) {
     return images.begin()->getSerializedSize();
-}
-
-size_t sizeRequired(list<Image> &images) {
-    return images.size() * sizeOfElement(images);
 }

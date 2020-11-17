@@ -102,6 +102,12 @@
 		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/repository/ImageSerializer.h">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/service/ImageService.cpp">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
+		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/image/service/ImageService.h">
+			<Option target="75_59_Concurrentes_TP1"/>
+		</Unit>
 		<Unit filename="/Users/jorge.cabrera/workspace/Facultad/75.59-Concurrentes-TP1/src/ipc/fifos/Fifo.cpp">
 			<Option target="75_59_Concurrentes_TP1"/>
 		</Unit>

@@ -7,6 +7,7 @@
 #include "ImageQualityFixer.h"
 #include "../../ipc/memory/SharedMemory.h"
 #include "../repository/ImageRepository.h"
+#include "../service/ImageService.h"
 
 ImageQualityFixer::ImageQualityFixer() = default;
 
@@ -40,7 +41,7 @@ void ImageQualityFixer::adjustInParallel(list<Image> images) {
             try {
                 /*cout << "I am a child. My pid is: " << getpid() << " my ppid is: " << getppid() << ", element: " << i
                      << " \n";*/
-                SharedMemory memory1 = SharedMemory(images.size());
+                SharedMemory memory1 = SharedMemory(ImageService::serializedSize(images));
                 ImageRepository imageRepository = ImageRepository(images.begin()->getSerializedSize());
                 Image image = imageRepository.findByPosition(i, memory1.getPtrData());
                 this->adjust(&image);
