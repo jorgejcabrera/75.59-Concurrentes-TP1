@@ -1,0 +1,66 @@
+[2020-11-16 23:23:42.411] [DEBUG] ----------------------Taking images----------------------
+[2020-11-16 23:23:42.412] [DEBUG] Using FIFO method
+[2020-11-16 23:23:42.416] [DEBUG] All images were adjusted successfully with FIFO.
+[2020-11-16 23:23:42.416] [DEBUG] Final image retrieved by FIFO: { 
+ id: 378840,
+ width: 2,
+ height: 3,
+ pixels: {
+      [167 241 217] [42 130 200]
+      [216 254 67] [77 152 85]
+      [140 226 179] [71 23 17]
+}
+
+[2020-11-16 23:23:42.416] [DEBUG] ----------------------Taking images----------------------
+[2020-11-16 23:23:42.416] [DEBUG] Using FIFO method
+[2020-11-16 23:23:43.421] [DEBUG] All images were adjusted successfully with FIFO.
+[2020-11-16 23:23:43.421] [DEBUG] Final image retrieved by FIFO: { 
+ id: 236579,
+ width: 2,
+ height: 3,
+ pixels: {
+      [47 17 45] [5 88 245]
+      [107 214 136] [7 153 146]
+      [72 51 98] [65 243 13]
+}
+
+[2020-11-16 23:23:43.421] [DEBUG] ----------------------Taking images----------------------
+[2020-11-16 23:23:43.422] [DEBUG] Using FIFO method
+[2020-11-16 23:23:44.426] [DEBUG] All images were adjusted successfully with FIFO.
+[2020-11-16 23:23:44.426] [DEBUG] Final image retrieved by FIFO: { 
+ id: 509530,
+ width: 2,
+ height: 3,
+ pixels: {
+      [95 48 209] [200 237 97]
+      [12 75 2] [53 57 129]
+      [132 184 20] [162 156 180]
+}
+
+[2020-11-16 23:23:44.427] [DEBUG] ----------------------Taking images----------------------
+[2020-11-16 23:23:44.427] [DEBUG] Using FIFO method
+[2020-11-16 23:23:45.431] [DEBUG] All images were adjusted successfully with FIFO.
+[2020-11-16 23:23:45.431] [DEBUG] Final image retrieved by FIFO: { 
+ id: 339425,
+ width: 2,
+ height: 3,
+ pixels: {
+      [42 202 229] [72 233 197]
+      [241 176 196] [21 138 229]
+      [155 77 57] [246 247 232]
+}
+
+[2020-11-16 23:23:45.432] [DEBUG] ----------------------Taking images----------------------
+[2020-11-16 23:23:45.432] [DEBUG] Using FIFO method
+[2020-11-16 23:23:45.436] [DEBUG] All images were adjusted successfully with FIFO.
+[2020-11-16 23:23:45.436] [DEBUG] Final image retrieved by FIFO: { 
+ id: 354438,
+ width: 2,
+ height: 3,
+ pixels: {
+      [211 254 237] [165 213 243]
+      [217 228 91] [250 108 195]
+      [81 226 32] [174 12 225]
+}
+
+[2020-11-16 23:23:45.436] [DEBUG] Process has received a signal or it has reached the maximum of iterations, and then it was finished with status code 0.
