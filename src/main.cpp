@@ -50,7 +50,7 @@ int main() {
     SignalHandler::registerHandler(SIGINT, &sigint_handler);
 
     int iteration = 0;
-    while (shouldItTakeMoreImages(sigint_handler, iteration)) {
+    do {
         try {
             iteration++;
             /** Taking some images */
@@ -97,7 +97,7 @@ int main() {
         } catch (std::string &errormessage) {
             std::cout << errormessage << std::endl;
         }
-    }
+    } while (shouldItTakeMoreImages(sigint_handler, iteration));
 
     /** Signal was received and the main process must be closed */
     SignalHandler::destroy();
