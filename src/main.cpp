@@ -54,15 +54,19 @@ int main() {
     while (shouldItTakeMoreImages(sigint_handler, iteration)) {
         try {
             iteration++;
-            Logger::getInstance(logLevel)->log("----------------------Taking images----------------------");
-
             /** Taking some images */
+            Logger::getInstance(logLevel)->log("----------------------Taking images----------------------");
             list<Image> images = observatory.takeImagesCapture();
             Logger::getInstance(logLevel)->log("Initial images value: ", images);
+
             if (method == "FIFO") {
                 Logger::getInstance(logLevel)->log("Using FIFO method");
+
+                /** Parallel process */
                 list<Image> adjustedImagesWithFIFO = ImageQualityFixer().adjustWithFIFO(images);
                 Logger::getInstance(logLevel)->log("All images were adjusted successfully with FIFO.");
+
+                /** Final images */
                 Image finalImageWithFIFO = ImageQualityFixer::overlap(adjustedImagesWithFIFO);
                 Logger::getInstance(logLevel)->log("Final image retrieved by FIFO: " + finalImageWithFIFO.toString());
             } else {

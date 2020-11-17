@@ -3,7 +3,7 @@
 //
 
 #include <unistd.h>
-
+#include <sys/wait.h>
 #include "ImageQualityFixer.h"
 #include "../../ipc/memory/SharedMemory.h"
 #include "../repository/ImageRepository.h"
@@ -55,7 +55,7 @@ void ImageQualityFixer::adjustInParallel(list<Image> images) {
     }
 
     for (int i = 0; i < imageQuantity; ++i) {
-        wait(nullptr);
+        wait(NULL);
     }
 }
 
@@ -75,7 +75,7 @@ list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
             ImageRepository::saveToPartition(partitionKey, it.operator*());
             Image anImage = ImageRepository::findByPartition(partitionKey + "_adjust", it->getSerializedSize());
             adjustedImages.push_front(anImage);
-            wait(nullptr);
+            wait(NULL);
             //cout << "El padre recicio la imagen" << anImage.toString();
         }
     }
