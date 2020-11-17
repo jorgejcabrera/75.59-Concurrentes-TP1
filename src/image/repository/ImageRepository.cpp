@@ -70,7 +70,6 @@ Image ImageRepository::findByPartition(string partition, size_t totalSize) {
     readerChannel.start();
     readerChannel.pop(buffer, totalSize);
     Image anImage = ImageSerializer::hydrate(buffer);
-    //cout << "[READER] Lei de la paritcion: " << anImage.toString();
     readerChannel.finish();
     return anImage;
 }
@@ -83,7 +82,6 @@ void ImageRepository::saveToPartition(string partition, Image image) {
     writerChannel.push(serializedImage, image.getSerializedSize());
     writerChannel.finish();
     writerChannel.destroy();
-    //cout << "[WRITER] Escribi a la particion: " << ImageSerializer::hydrate(serializedImage).toString();
 }
 
 ImageRepository::~ImageRepository() = default;

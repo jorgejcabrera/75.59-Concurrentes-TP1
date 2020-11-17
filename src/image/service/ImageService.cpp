@@ -7,3 +7,7 @@
 size_t ImageService::serializedSize(list<Image> images) {
     return images.size() * images.begin()->getSerializedSize();
 }
+
+ImageService::ImageService() = default;
+
+ImageService::~ImageService() = default;

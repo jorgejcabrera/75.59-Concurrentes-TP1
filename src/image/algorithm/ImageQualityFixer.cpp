@@ -39,8 +39,6 @@ void ImageQualityFixer::adjustInParallel(list<Image> images) {
             abort();
         } else if (procId == 0) {
             try {
-                /*cout << "I am a child. My pid is: " << getpid() << " my ppid is: " << getppid() << ", element: " << i
-                     << " \n";*/
                 SharedMemory memory1 = SharedMemory(ImageService::serializedSize(images));
                 ImageRepository imageRepository = ImageRepository(images.begin()->getSerializedSize());
                 Image image = imageRepository.findByPosition(i, memory1.getPtrData());
@@ -55,14 +53,10 @@ void ImageQualityFixer::adjustInParallel(list<Image> images) {
         }
     }
 
-    for (int i = 0; i < imageQuantity; ++i) {
-        wait(NULL);
-    }
+    waitForChildren(images);
 }
 
-
 list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
-    list<Image> adjustedImages;
     for (auto it = images.begin(); it != images.end(); it++) {
         int i = std::distance(images.begin(), it);
         string partitionKey = ImageRepository::getPartitionKey(i);
@@ -74,14 +68,29 @@ list<Image> ImageQualityFixer::adjustWithFIFO(list<Image> images) {
             exit(0);
         } else {
             ImageRepository::saveToPartition(partitionKey, it.operator*());
-            Image anImage = ImageRepository::findByPartition(partitionKey + "_adjust", it->getSerializedSize());
-            adjustedImages.push_front(anImage);
-            wait(NULL);
-            //cout << "El padre recicio la imagen" << anImage.toString();
         }
     }
 
+    list<Image> adjustedImages = readAdjustedImages(images);
+    waitForChildren(images);
     return adjustedImages;
+}
+
+list<Image> ImageQualityFixer::readAdjustedImages(list<Image> &images) {
+    list<Image> adjustedImages;
+    for (auto it = images.begin(); it != images.end(); it++) {
+        int i = distance(images.begin(), it);
+        string partitionKey = ImageRepository::getPartitionKey(i);
+        Image anImage = ImageRepository::findByPartition(partitionKey + "_adjust", it->getSerializedSize());
+        adjustedImages.push_front(anImage);
+    }
+    return adjustedImages;
+}
+
+void ImageQualityFixer::waitForChildren(const list<Image> &images) {
+    for (int i = 0; i < images.size(); i++) {
+        wait(NULL);
+    }
 }
 
 
